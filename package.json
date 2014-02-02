@@ -9,5 +9,8 @@
     "express": "3.4.4",
     "jade": "*",
     "npm": "*"
+  },
+  "devDependencies": {
+    "assemble": "~0.4.35"
   }
 }
