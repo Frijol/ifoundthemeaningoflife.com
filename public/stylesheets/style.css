@@ -1,19 +1,33 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 5%;
+  font: 20px Helvetica, Arial, sans-serif;
+  background-color: #dddddd;
 }
 
 a {
-  color: #111ddd;
+  color: #222299;
   text-decoration: none;
+}
+
+a:hover {
+	color: #5555dd;
+}
+
+.main-container {
+	background-color: #ffffff;
+	margin-left: 5%;
+	padding: 5%;
+	max-width: 860px;
+}
+
+.right-align {
+	text-align: right;
+	margin-left: 5%;
+	max-width: 960px;
 }
 
 .social {
   margin-right: 5px;
-}
-
-.social:hover {
-	background-color: black;
 }
 
 #social {
