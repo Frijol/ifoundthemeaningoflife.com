@@ -4,7 +4,8 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #111ddd;
+  text-decoration: none;
 }
 
 .social {

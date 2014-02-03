@@ -1,28 +1,30 @@
 extends layout
 
 block content
-	h1 Kelsey Breseman
+	h1 I'm Kelsey Breseman.
 
-	p Forest · Circus · Making · Tessel · Olin · Spanish · Orienteering · Adventure
+	p I'm currently a part of <a href="http://technical.io">Technical Machine</a> (we make Tessel). I'm also a neural engineer, a maker, a wilderness child, and an adventurer.
 
-	h3 Sometimes I write.
-	p I've done <a href="http://ifoundthemeaningoflife.tumblr.com/">interviews</a>, am obsessed with <a href="http://aspiringlexicographer.tumblr.com/">words</a>, wrote <a href="http://digitalcommons.olin.edu/cgi/viewcontent.cgi?article=1025&context=ahs_capstone_2012">a series of short stories</a> once, and occasionally <a href="http://ifoundthemeaningoflife.blogspot.com/">ramble about poetry or philosophy</a>.
+	h3 Writing
+	p
+		a(href="http://meaninglite.tumblr.com/") blog · 
+		a(href="http://ifoundthemeaningoflife.tumblr.com/") interviews · 
+		a(href="http://digitalcommons.olin.edu/cgi/viewcontent.cgi?article=1025&context=ahs_capstone_2012") short stories
 	
-	h3 Sometimes I make.
-	p A lot of things I've made are on <a href="http://instructables.com/member/SelkeyMoonbeam">Instructables</a>. There might be some more <a href="http://www.pinterest.com/frijoldelaluna/things-i-made/">here</a>.
+	h3 Learning to code
+	p
+		a(href="/learntocode") (work in progress)
 	
-	h3 Right now I'm proud to be a part of <a href="http://technical.io">Technical Machine</a>, particularly in trying to attract <a href="http://www.pinterest.com/frijoldelaluna/technical-machine-press-shamelessly-collected/">press</a>.
-	p Relatedly, I'm learning to <a href="http://github.com/Frijol">code</a>. </a>Before, I was at <a href="http://olin.edu">Olin College</a>, which I think is really wonderful.
-	
-	h3 You can talk to me if you want.
-	p I'm on <a href="http://twitter.com/selkeymoonbeam">Twitter</a>, <a href="http://www.linkedin.com/pub/kelsey-breseman/30/35/845">LinkedIn</a>, and probably <a href="https://plus.google.com/103328748724367873944/posts">some other places around the web</a>.
-
 	#social
 		- // most of the icons are from somicro by Veo design: http://veodesign.com/2011/en/09/07/somicro-27-free-simple-social-media-icons/
 		- var social = '/images/somicro/'
+		a(href="http://www.instructables.com/member/SelkeyMoonbeam/")
+			img.social(src=social + 'instructables.png')
+		a(href="http://technical.io")
+			img.social(src=social + 'tessel.png')
 		a(href="http://www.pinterest.com/frijoldelaluna/")
 			img.social(src=social + 'pinterest.png')
-		a(href="")
+		a(href="https://plus.google.com/103328748724367873944/posts")
 			img.social(src=social + 'gplus.png')
 		a(href="https://github.com/Frijol")
 			img.social(src=social + 'github.png')
