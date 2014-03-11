@@ -10,3 +10,11 @@ exports.index = function(req, res){
 exports.learntocode = function (req, res) {
 	res.render('learntocode', { title: 'Learn to Code'});
 }
+
+exports.cmd101mac = function (req, res) {
+	res.render('cmd101mac', {title: 'Command Line 101 for Mac'});
+}
+
+exports.cmd101win = function (req, res) {
+	res.render('cmd101win', {title: 'Command Line 101 for Windows'});
+}

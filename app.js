@@ -30,6 +30,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/learntocode', routes.learntocode);
+app.get('/learntocode/cmd101mac', routes.cmd101mac);
+app.get('/learntocode/cmd101win', routes.cmd101win);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
