@@ -1,0 +1,49 @@
+extends layout
+
+block content
+	.right-align
+			a(href="/") Kelsey Breseman
+	.main-container
+		h1 Command Line 101 for Windows
+		.row
+			.small-1.columns.left
+				h1 0
+			.small-11.columns.right
+				p Open up the application on your computer called “Command Prompt”.
+		
+				p If you’re not on Windows 8, go to the start menu and type “Command Prompt”.
+
+				p If you are on Windows 8+, swipe right to find “Windows System”, within which you can find “Command Prompt”.
+
+				p Its icon looks like <img src="/images/win-term-icon.png">, and the application (the terminal) will look something like <img src="/images/win-term.png">
+
+				p You can use the terminal to write commands to your computer (this is the “command line”). Let’s try it out!
+		.row
+			.small-1.columns.left
+				h1 1
+			.small-11.columns.right
+				h3 In your terminal, type <code>dir</code> and hit enter.
+
+				p The <code>dir</code> command, short for “directory”, tells your computer to list all of the file names for the folder you’re in. Your list of files probably includes “Desktop” and “Documents”, among others. Let’s try another command:
+		.row
+			.small-1.columns.left
+				h1 2
+			.small-11.columns.right
+				h3 Now type <code>cd Documents</code>.
+
+				p You are now in the Documents folder; <code>cd</code> means “change directory”. If you try <code>dir</code> again, you should see the contents of your Documents folder listed out. If you want to compare, open up My Comuter and look in Documents to see the same files.
+		.row
+			.small-1.columns.left
+				h1 3
+			.small-11.columns.right
+				p Let’s get back to the folder we were in before:
+
+				h3 <code>cd ..</code>
+
+				p You changed directory again! <code>dir</code> to see what we have here. You’re back where you started! The <code>..</code> after <code>cd</code> tells it to go up one folder in the directory.
+		.row
+			p Ok, now you’re a cool hacker who can use the terminal to write in the command line. (If you want to learn more commands, there are a whole bunch of them <a href="http://ss64.com/nt/" target=1>here</a>.)
+		.row
+			h1
+				a(href="/learntocode")
+					| << Back to the lesson
