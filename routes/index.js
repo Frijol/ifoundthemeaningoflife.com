@@ -18,3 +18,7 @@ exports.cmd101mac = function (req, res) {
 exports.cmd101win = function (req, res) {
 	res.render('cmd101win', {title: 'Command Line 101 for Windows'});
 }
+
+exports.cadence = function (req, res) {
+	res.redirect('http://peaceful-atoll-3426.herokuapp.com/');
+}
