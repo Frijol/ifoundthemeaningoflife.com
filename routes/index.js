@@ -8,7 +8,7 @@ exports.index = function (req, res) {
 };
 
 exports.writing = function (req, res) {
-  res.render('speaking', { title: 'Writing'});
+  res.render('writing', { title: 'Writing'});
 };
 
 exports.speaking = function (req, res) {
