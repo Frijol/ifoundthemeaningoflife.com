@@ -2,6 +2,49 @@ doctype html
 html
   head
     title= title
+    link(href="/stylesheets/foundation.min.css", rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    style.      
+      .top-bar, .top-bar.expanded .title-area { font-family: Helvetica, sans-serif; background: inherit; }
+      .top-bar-section li a:not(.button) { background: inherit; font-size: 14px; }
+      .top-bar a { -webkit-transition: background 0.2s linear; line-height: 42px; height: 45px; display: block; }
+      .top-bar a:hover { background: rgba(0, 0, 0, 0.1) !important; }
+      .twitterbird img { height: 40px; vertical-align: middle; }
+      .top-bar .divider { border-left: 1px solid #bbb !important ; border-right: none !important; }
+      .top-bar-section li a:not(.button) { background: white; color: black; }
+      .top-bar-section ul.right { background: white; }
+      .top-bar .toggle-topbar.menu-icon a { color: black; }
+      .top-bar .toggle-topbar.menu-icon a span {
+        -webkit-box-shadow: 0 10px 0 1px #000,0 16px 0 1px #000,0 22px 0 1px #000;
+        box-shadow: 0 10px 0 1px #000,0 16px 0 1px #000,0 22px 0 1px #000;
+      }
+      .top-bar.expanded ul.right a { line-height: 20px }
+      .top-bar.expanded ul.right a img { margin-top: -8px }
   body
+    nav.top-bar
+      ul.top-bar-section
+        li.title-area
+          a(href="/")
+
+        section.top-bar-section
+          ul.right
+            li
+              a(href="/") Kelsey Breseman
+            li.divider.hide-for-small
+            li
+              a(href="/writing") Writing
+            li.divider.hide-for-small
+            li
+              a(href="/speaking") Speaking
+            li.divider.hide-for-small
+            li
+              a(href="/mentoring") Mentoring
+            li.divider.hide-for-small
+            li
+              a(href="/coding") Coding
+            li.divider.hide-for-small
+            li
+              a.twitterbird(href="//twitter.com/selkeymoonbeam")
+                img(src="//abs.twimg.com/a/1379971261/images/resources/twitter-bird-light-bgs.png", alt="@technicalhumans")
+
     block content

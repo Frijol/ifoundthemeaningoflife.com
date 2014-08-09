@@ -1,9 +1,3 @@
-body {
-  padding: 5%;
-  font: 20px Helvetica, Arial, sans-serif;
-  background-color: #dddddd;
-}
-
 a {
   color: #222299;
   text-decoration: none;
@@ -11,6 +5,14 @@ a {
 
 a:hover {
 	color: #5555dd;
+}
+
+.top-bar {
+  background: inherit;
+}
+
+.top-bar-section {
+  background: #ffffff;
 }
 
 .main-container {
