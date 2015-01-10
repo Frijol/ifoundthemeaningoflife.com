@@ -1,22 +1,26 @@
+function standard (name) {
+  return function (req, res) {
+    res.render( name, { title: name });
+  };
+}
+
 exports.index = function (req, res) {
   res.render('index', { title: 'Kelsey Breseman' });
 };
 
-exports.writing = function (req, res) {
-  res.render('writing', { title: 'Writing'});
-};
+exports.interviews = standard('interviews');
 
-exports.speaking = function (req, res) {
-  res.render('speaking', { title: 'Speaking'});
-};
+exports.adventures = standard('adventures');
 
-exports.mentoring = function (req, res) {
-  res.render('mentoring', { title: 'Mentoring'});
-};
+exports.editing = standard('editing');
 
-exports.coding = function (req, res) {
-  res.render('coding', { title: 'Coding'});
-};
+exports.writing = standard('writing');
+
+exports.speaking = standard('speaking');
+
+exports.mentoring = standard('mentoring');
+
+exports.coding = standard('coding');
 
 exports.learntocode = function (req, res) {
 	res.render('learntocode', { title: 'Learn to Code'});
