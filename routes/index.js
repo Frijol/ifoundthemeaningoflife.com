@@ -33,3 +33,7 @@ exports.cmd101win = function (req, res) {
 exports.cadence = function (req, res) {
 	res.redirect('http://peaceful-atoll-3426.herokuapp.com/');
 };
+
+exports.pelican = function (req, res) {
+  res.render('pelican', {title: 'Pelican'});
+};
