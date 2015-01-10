@@ -23,6 +23,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/adventures', routes.adventures);
+app.get('/interviews', routes.interviews);
+app.get('/editing', routes.editing);
 app.get('/writing', routes.writing);
 app.get('/speaking', routes.speaking);
 app.get('/mentoring', routes.mentoring);
