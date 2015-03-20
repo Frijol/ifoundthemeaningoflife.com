@@ -22,6 +22,8 @@ exports.mentoring = standard('mentoring');
 
 exports.coding = standard('coding');
 
+exports.projects = standard('projects');
+
 exports.learntocode = function (req, res) {
 	res.render('learntocode', { title: 'Learn to Code'});
 };

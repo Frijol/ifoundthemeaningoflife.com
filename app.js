@@ -30,6 +30,7 @@ app.get('/writing', routes.writing);
 app.get('/speaking', routes.speaking);
 app.get('/mentoring', routes.mentoring);
 app.get('/coding', routes.coding);
+app.get('/projects', routes.projects);
 app.get('/learntocode', routes.learntocode);
 app.get('/learntocode/cmd101mac', routes.cmd101mac);
 app.get('/learntocode/cmd101win', routes.cmd101win);
