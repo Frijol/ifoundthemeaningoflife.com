@@ -1,21 +1,45 @@
 extends layout
 
 block content
+  
+  mixin speaking(link, title, event, location)
+    li
+      a(href=link) #{title}
+      |  #{event}, #{location}
+      
+  mixin hack(link, event, location)
+    li
+      a(href=link) #{event}
+      | , #{location}
+
   .main-container
     h1 Speaking
 
-    p I enjoy having a voice in worthwhile topics. If you'd like me to speak or be a panelist for an event, please let me know! 
+    p I enjoy having a voice in worthwhile topics. If you'd like me to speak or be a panelist for an event, please let me know!
+    
+    p I've done technical talks, live coding demos, community-based and cultural talks, and talks that span these subjects. 
+    
+    p Upcoming:
+      ul
+        +speaking('http://nodeconf.com/', 'Tessel 2 and the Future of IoT', 'NodeConf 2015', 'Oakland, CA')
+        +hack('http://nodeconf.com/', 'Tessel Hack', 'Nodeconf Adventure', 'Walker Creek Ranch, CA')
     
     p Selected prior speaking engagements:
     p
-      <iframe width="560" height="315" src="//www.youtube.com/embed/c93WZXIN3Jk" frameborder="0" allowfullscreen></iframe>
+      ul
+        +speaking('https://skillsmatter.com/skillscasts/5771-bringing-hardware-to-life-with-js-and-node', 'Bringing Hardware to Life with JS and Node', 'Fullstack conference', 'London, UK')
+        +speaking('https://youtu.be/c93WZXIN3Jk', 'Node as a Movement: Building Community into Products', 'NodeDay', 'Palo Alto, CA')
+        +speaking('https://youtu.be/c93WZXIN3Jk', 'Beyond the Screen: Humans as Input and Output', "O'Reilly Solid", 'San Francisco, CA')
+        +speaking('http://meaninglite.tumblr.com/post/74878401265/women-in-tech-talk', 'Girls into Tech', 'Rough Draft Ventures Women in Tech Panel', 'Boston, MA')
+
+    p I've also hosted a great number of hackathons and workshops with Tessels, including:
     p
-      <iframe width="560" height="315" src="//www.youtube.com/embed/LdATa51ejgM" frameborder="0" allowfullscreen></iframe>
-    p
-      li
-        a(href="http://meaninglite.tumblr.com/post/74878401265/women-in-tech-talk")
-          | Women in Tech talk for Rough Draft Ventures
-    p
-      li
-        a(href="https://skillsmatter.com/skillscasts/5771-bringing-hardware-to-life-with-js-and-node")
-          | Bringing Hardware to Life with JS and Node
+      ul
+        +hack('https://www.cambridgehackspace.com/', 'Cambridge Hackspace Tessel Hack Night', 'Cambridge, MA')
+        +hack('http://nodeconf.com/', 'NodeConf', 'Walker Creek Ranch, CA')
+        +hack('http://nodebots.io/', 'Nodebots Day', 'San Francisco, CA')
+        +hack('https://skillsmatter.com/conferences/6361-fullstack-node-and-javascript-conference#skillscasts', 'Fullstack', 'London, UK')
+        +hack('http://iotatscale.com/', 'IoT at Scale', 'Palo Alto, CA')
+        +hack('http://oakland.jsfest.com/', 'Oakland JSFest', 'Oakland, CA')
+        +hack('http://nodesummit.com/', 'NodeSummit', 'San Francisco, CA')
+        +hack('https://trivalleycoderdojo.wordpress.com/2015/02/15/microcontroller-fun-with-tessel/', 'TriValley CoderDojo', 'Dublin, CA')
