@@ -5,51 +5,70 @@ block content
   mixin speaking(link, title, event, location)
     li
       a(href=link) #{title}
-      |  #{event}, #{location}
+      |  <b>#{event}</b>, #{location}
 
   mixin hack(link, event, location)
     li
-      a(href=link) #{event}
+      a(href=link)
+        b #{event}
       | , #{location}
 
   .main-container
-    h1 Speaking
-
-    p I enjoy having a voice in worthwhile topics. If you'd like me to speak or be a panelist for an event, please let me know!
-
-    p I've done technical talks, live coding demos, community-based and cultural talks, open source talks, and talks that span these subjects.
-
-    p Upcoming:
-      ul
-        +speaking('http://softwareengineeringdaily.com/', 'Kelsey Breseman: Tessel 2 and the Tessel Project', 'Software Engineering Daily', 'Podcast')
-        +speaking('http://nodeday.com/', 'TBA', 'Nodeday Amsterdam 2016', 'Amsterdam, The Netherlands')
-
-    p Selected prior speaking engagements:
-    p
-      ul
-        +speaking('https://skillsmatter.com/skillscasts/5771-bringing-hardware-to-life-with-js-and-node', 'Bringing Hardware to Life with JS and Node', 'Fullstack conference', 'London, UK')
-        +speaking('https://youtu.be/c93WZXIN3Jk', 'Node as a Movement: Building Community into Products', 'NodeDay', 'Palo Alto, CA')
-        +speaking('https://www.youtube.com/watch?v=LdATa51ejgM', 'Beyond the Screen: Humans as Input and Output', "O'Reilly Solid", 'San Francisco, CA')
-        +speaking('http://meaninglite.tumblr.com/post/74878401265/women-in-tech-talk', 'Girls into Tech', 'Rough Draft Ventures Women in Tech Panel', 'Boston, MA')
-        +speaking('https://t.co/QAfKDYHhJi', 'Developing an Open Product as a Distributed Team of Volunteers', 'Nodeconf EU', 'Waterford, Ireland')
-        +speaking('http://t.co/OCetD0rcGL', 'Tessel.io - Making the Internet of Things', 'Hanselminutes', 'Podcast')
-        +speaking('http://t.co/TJ6HctM81a', 'A Tessel 2 Show', 'NodeUp', 'Podcast')
-        +speaking('https://drive.google.com/file/d/0ByaOzlCGye7LM0VCZVloU19yekE/view?usp=sharing', 'Reality Capture with the 3DR Solo Drone', 'Autodesk University', 'Las Vegas, Nevada')
-        +speaking('https://www.youtube.com/watch?v=uYcE4r0j8Zw', 'Hands on Hardware with Tessel', 'Node.JS Interactive 2015', 'Portland, OR')
-
-    p I've also hosted a great number of hackathons and workshops with Tessels, including:
-    p
-      ul
-        +hack('https://www.cambridgehackspace.com/', 'Cambridge Hackspace Tessel Hack Night', 'Cambridge, MA')
-        +hack('http://nodeconf.com/', 'NodeConf', 'Walker Creek Ranch, CA')
-        +hack('http://nodebots.io/', 'Nodebots Day', 'San Francisco, CA')
-        +hack('https://skillsmatter.com/conferences/6361-fullstack-node-and-javascript-conference#skillscasts', 'Fullstack', 'London, UK')
-        +hack('http://iotatscale.com/', 'IoT at Scale', 'Palo Alto, CA')
-        +hack('http://oakland.jsfest.com/', 'Oakland JSFest', 'Oakland, CA')
-        +hack('http://nodesummit.com/', 'NodeSummit', 'San Francisco, CA')
-        +hack('https://trivalleycoderdojo.wordpress.com/2015/02/15/microcontroller-fun-with-tessel/', 'TriValley CoderDojo', 'Dublin, CA')
-        +hack('http://nodeconf.com/', 'Tessel Hack', 'Nodeconf Adventure', 'Walker Creek Ranch, CA')
-        +hack('https://t.co/6KFdR8Joy5', 'Tessel 2 Hack', 'Fullstack', 'London, UK')
-        +hack('http://events.jquery.org/2015/developer-summit/', 'Open Source is for Everyone', 'JQuery Foundation Developers Summit', 'New York, NY')
-        +hack('http://iotworldevent.com/', 'Hackathon', 'IoT World', 'San Francisco, CA')
-        +hack('http://t.co/VWtBxLbdeG', 'Day Zero Tessel Hack', 'Node Summit', 'San Francisco, CA')
+    .row
+      .columns.large-12
+        h1 Speaking
+        
+    .row
+      .columns.large-7
+        p Conferences are a great way to share ideas, spread knowledge, and meet people.
+        
+        p I have run hardware and coding workshops and spoken at conferences and on podcasts for the following topics:
+        
+        ul
+          li JavaScript/Node on hardware technical demonstrations/talks/live coding
+          li Internet of Things/Ubiquitous Computing theory and demonstrations
+          li Open source project management
+          li Hands-on hardware and programming workshops
+          
+        p Want to have me at your event? Please reach out!
+        
+      .columns.large-5
+        img(src="/images/headshot.jpg")
+        p
+          <br/>
+          a.button.large.round(href="//twitter.com/selkeymoonbeam") Ask Kelsey to speak
+    
+    .row
+      .columns.large-6
+        h4 Selected prior speaking engagements:
+        p
+          ul
+            +speaking('https://skillsmatter.com/skillscasts/5771-bringing-hardware-to-life-with-js-and-node', 'Bringing Hardware to Life with JS and Node', 'Fullstack conference', 'London, UK')
+            +speaking('https://youtu.be/c93WZXIN3Jk', 'Node as a Movement: Building Community into Products', 'NodeDay', 'Palo Alto, CA')
+            +speaking('https://www.youtube.com/watch?v=LdATa51ejgM', 'Beyond the Screen: Humans as Input and Output', "O'Reilly Solid", 'San Francisco, CA')
+            +speaking('http://meaninglite.tumblr.com/post/74878401265/women-in-tech-talk', 'Girls into Tech', 'Rough Draft Ventures Women in Tech Panel', 'Boston, MA')
+            +speaking('https://t.co/QAfKDYHhJi', 'Developing an Open Product as a Distributed Team of Volunteers', 'Nodeconf EU', 'Waterford, Ireland')
+            +speaking('http://t.co/OCetD0rcGL', 'Tessel.io - Making the Internet of Things', 'Hanselminutes', 'Podcast')
+            +speaking('http://t.co/TJ6HctM81a', 'A Tessel 2 Show', 'NodeUp', 'Podcast')
+            +speaking('https://drive.google.com/file/d/0ByaOzlCGye7LM0VCZVloU19yekE/view?usp=sharing', 'Reality Capture with the 3DR Solo Drone', 'Autodesk University', 'Las Vegas, Nevada')
+            +speaking('https://www.youtube.com/watch?v=uYcE4r0j8Zw', 'Hands on Hardware with Tessel', 'Node.JS Interactive 2015', 'Portland, OR')
+            +speaking('http://softwareengineeringdaily.com/', 'Kelsey Breseman: Tessel 2 and the Tessel Project', 'Software Engineering Daily', 'Podcast')
+            +speaking('http://nodeday.com/', 'Panel: Node for Hardware', 'Nodeday Amsterdam 2016', 'Amsterdam, The Netherlands')
+      .columns.large-6
+        h4 Selected prior workshops and hackathons:
+        p
+          ul
+            +hack('https://www.cambridgehackspace.com/', 'Cambridge Hackspace Tessel Hack Night', 'Cambridge, MA')
+            +hack('http://nodeconf.com/', 'NodeConf', 'Walker Creek Ranch, CA')
+            +hack('http://nodebots.io/', 'Nodebots Day', 'San Francisco, CA')
+            +hack('https://skillsmatter.com/conferences/6361-fullstack-node-and-javascript-conference#skillscasts', 'Fullstack', 'London, UK')
+            +hack('http://iotatscale.com/', 'IoT at Scale', 'Palo Alto, CA')
+            +hack('http://oakland.jsfest.com/', 'Oakland JSFest', 'Oakland, CA')
+            +hack('http://nodesummit.com/', 'NodeSummit', 'San Francisco, CA')
+            +hack('https://trivalleycoderdojo.wordpress.com/2015/02/15/microcontroller-fun-with-tessel/', 'TriValley CoderDojo', 'Dublin, CA')
+            +hack('http://nodeconf.com/', 'Tessel Hack', 'Nodeconf Adventure', 'Walker Creek Ranch, CA')
+            +hack('https://t.co/6KFdR8Joy5', 'Tessel 2 Hack', 'Fullstack', 'London, UK')
+            +hack('http://events.jquery.org/2015/developer-summit/', 'Open Source is for Everyone', 'JQuery Foundation Developers Summit', 'New York, NY')
+            +hack('http://iotworldevent.com/', 'Hackathon', 'IoT World', 'San Francisco, CA')
+            +hack('http://t.co/VWtBxLbdeG', 'Day Zero Tessel Hack', 'Node Summit', 'San Francisco, CA')
+            +hack('//jsconfbeirut.com', 'JavaScript on Hardware Workshop', 'JSConf Beirut', 'Beirut, Lebanon')
