@@ -1,8 +1,31 @@
 extends layout
 
 block content
-  .main-container
-    h1 Adventures and Travels
-    p <a href="meaninglite.tumblr.com">View on Tumblr</a> | <a href="meaninglite.tumblr.com/archive">Post Archive</a> | <a href="meaninglite.tumblr.com/rss">RSS Link</a>
-    <script type='text/javascript' src='http://meaninglite.tumblr.com/js'></script>
+  mixin series (title, link, date)
+    p
+      a(href=link) #{title}
+      | : #{date}
+  
+  .row
+    .columns.large-12
+      h1 Adventures and Travels
+  .row
+    .columns.large-3.right.sidebar
+      p
+        i Jump to first post in series:
+      +series("Greece/Refugees", "http://meaninglite.tumblr.com/post/141297929454/&chi;%CE%AF&omicron;&upsilon;", "Spring 2016")
+      +series("Lebanon", "http://meaninglite.tumblr.com/post/140935387580/beirut-lebanon-first-impressions-outside-my", "March 2016")
+      +series("Bahamas", "http://meaninglite.tumblr.com/post/106828135699/the-bahamas-are-not-what-i-expected-i-thought-in", "New Year 2015")
+      +series("Costa Rica", "http://meaninglite.tumblr.com/post/14419259909/costa-rica-121811-i-wish-i-could-share-the", "December 2011")
+      +series("Chile", "http://meaninglite.tumblr.com/post/10735209101/hello-world", "Fall 2011")
+      +series("Burning Man & Solo Camping", "http://meaninglite.tumblr.com/post/10003818539/83011-931am-burning-man", "September 2011")
+      +series("Alaska", "http://meaninglite.tumblr.com/post/6116652364/hiking-in-the-muskeg-sunnyside-alaska-our", "June 2011")
+      +series("Hawaii", "http://meaninglite.tumblr.com/post/6096212962/hawaii-day-1", "December 2010")
+      +series("California", "http://meaninglite.tumblr.com/post/6096210164/hello-california", "June 2010")
+      +series("Nicaragua", "http://meaninglite.tumblr.com/post/6096209431/nicaragua", "May 2010")
+      +series("Europe/Orienteering", "http://meaninglite.tumblr.com/post/6096202919/europe", "Summer 2007")
+      +series("Chiapas, Mexico", "http://meaninglite.tumblr.com/post/6096197393/mexico-1", "Summer 2006")
+        
+    .columns.large-9.left
+      <script type='text/javascript' src='http://meaninglite.tumblr.com/js'></script>
     

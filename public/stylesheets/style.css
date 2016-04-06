@@ -62,3 +62,10 @@ a:hover {
   border-top-width: .1em;
   padding-top: 1em;
 }
+
+.sidebar {
+  border-left: solid;
+  border-width: .1em;
+  border-radius: 3;
+  padding-left: 1em;
+}
