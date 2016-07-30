@@ -1,5 +1,41 @@
 extends layout
 
+mixin pagination()
+  - var surround = 2
+  - var ends = 2
+  - var total = Math.ceil(posts.length / pagelength)
+  - if (!onepost)
+    .pagination
+      a.bloglink(href="/adventures/") Adventures and Travels 
+      ul
+        - if (page > ends + surround)
+          - for (var i = 0; i < ends; i++)
+            li 
+              a(href="/blog/?page=" + (i+1))= i+1
+            | &nbsp;
+          li.empty ...
+          | &nbsp;
+        - for (var i = page <= ends + surround ? 0 : Math.max(0, page - surround); i < (page >= total - ends - surround - 1 ? total : Math.min(total, page + 1 + surround)); i++)
+          - if (i != page)
+            li 
+              a(href="/blog/?page=" + (i+1))= i+1
+            | &nbsp;
+          - else
+            li.active
+              = i+1
+            | &nbsp;
+        - if (page < total - ends - surround - 1)
+          li.empty ...
+          | &nbsp;
+          - for (var i = total - ends; i < total; i++)
+            li 
+              a(href="/blog/?page=" + (i+1))= i+1
+            | &nbsp;
+
+  - else
+    .pagination
+      a.bloglink.active(href="/blog/") &larr; Back to the blog
+
 block content
   mixin series (title, link, date)
     p
@@ -35,7 +71,19 @@ block content
       +series("Chiapas, Mexico", "http://meaninglite.tumblr.com/post/6096197393/mexico-1", "Summer 2006")
         
     .columns.large-9.left
-      <script type='text/javascript' src='http://meaninglite.tumblr.com/js'></script>
-      a(href='http://meaninglite.tumblr.com/')
-        i Keep reading on my blog: meaninglite.tumblr.com
+      p #{onepost}
+      +pagination()
+        ul#blog-posts
+          each post in onepost ? [onepost] : posts.slice(page*pagelength, (page+1)*pagelength)
+            li
+              h2
+                a(href='/adventures/' + post.id + '/' + post.slug)= post.title
+              p.date= new Date(post.timestamp*1000).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+              div.post-body!= (post.body || '').replace(/(https?:)?(\/\/)?blog\.technical\.io[^'"]+/g, '/blog/')
+              p.tags= '#' + post.tags.join(' #')
+        +pagination()
+        
+      //- <script type='text/javascript' src='http://meaninglite.tumblr.com/js'></script>
+      //- a(href='http://meaninglite.tumblr.com/')
+      //-   i Keep reading on my blog: meaninglite.tumblr.com
     

@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 function standard (name) {
   return function (req, res) {
     res.render( name, { title: name });
@@ -42,4 +44,40 @@ exports.cadence = function (req, res) {
 
 exports.pelican = function (req, res) {
   res.render('pelican', {title: 'Pelican'});
+};
+
+exports.blog = function (req, res) {
+  require('./tumblr').getPosts()
+  .then(function (posts) {
+    res.render('adventures', {
+      title: 'Adventures',
+      postsbymonth: _.groupBy(posts, function (post) {
+        var d = new Date(post.timestamp*1000);
+        return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
+      }),
+      posts: posts,
+      page: (parseInt(req.query.page || '1') || 1) - 1,
+      pagelength: 5
+    });
+  });
+};
+
+exports.blogPost = function (req, res) {
+  require('./tumblr').getPosts()
+  .then(function (posts) {
+    console.log(posts); //TODO This is the part that's not working
+    var onepost = posts.filter(function (post) {
+      return post.id == req.params.postid;
+    })[0];
+    res.render('blog', {
+      title: (onepost ? onepost.title + ' | ' : 'Adventures'),
+      postsbymonth: _.groupBy(posts, function (post) {
+        var d = new Date(post.timestamp*1000);
+        return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
+      }),
+      posts: posts,
+      onepost: onepost,
+      pagelength: 5
+    });
+  });
 };
