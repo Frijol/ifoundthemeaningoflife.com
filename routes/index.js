@@ -68,6 +68,7 @@ exports.blogPost = function (req, res) {
       var onepost = posts.filter(function (post) {
         return post.id == req.params.postid;
       })[0];
+      console.log(onepost.photos[0])
       res.render('adventures', {
         title: (onepost ? onepost.title + ' | ' : 'adventures'),
         postsbymonth: _.groupBy(posts, function (post) {

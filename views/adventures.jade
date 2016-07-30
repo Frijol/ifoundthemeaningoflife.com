@@ -60,7 +60,12 @@ block content
           i
             a(href='/adventures/' + post.id + '/' + post.slug)
               p.date= 'Posted ' + new Date(post.timestamp*1000).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-          div.tumblr_body.tumblr_post!= (post.body || '')
+          div.tumblr_body.tumblr_post
+            if (post.type == 'photo')
+              each photo in post.photos
+                img(src=photo.original_size.url)
+              p!=post.caption
+            p !{(post.body || '')}
       +pagination()
     .columns.large-3.right.sidebar
       - var baseURL = 'http://ifoundthemeaningoflife.com/adventures/'
