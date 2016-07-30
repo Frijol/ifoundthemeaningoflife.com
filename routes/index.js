@@ -50,7 +50,7 @@ exports.blog = function (req, res) {
   require('./tumblr').getPosts()
   .then(function (posts) {
     res.render('adventures', {
-      title: 'Adventures',
+      title: 'adventures',
       postsbymonth: _.groupBy(posts, function (post) {
         var d = new Date(post.timestamp*1000);
         return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
@@ -64,17 +64,16 @@ exports.blog = function (req, res) {
 
 exports.blogPost = function (req, res) {
   require('./tumblr').getPosts()
-  .then(function (posts) {
-    console.log(posts); //TODO This is the part that's not working
-    var onepost = posts.filter(function (post) {
-      return post.id == req.params.postid;
-    })[0];
-    res.render('blog', {
-      title: (onepost ? onepost.title + ' | ' : 'Adventures'),
-      postsbymonth: _.groupBy(posts, function (post) {
-        var d = new Date(post.timestamp*1000);
-        return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
-      }),
+    .then(function (posts) {
+      var onepost = posts.filter(function (post) {
+        return post.id == req.params.postid;
+      })[0];
+      res.render('adventures', {
+        title: (onepost ? onepost.title + ' | ' : 'adventures'),
+        postsbymonth: _.groupBy(posts, function (post) {
+          var d = new Date(post.timestamp*1000);
+          return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
+        }),
       posts: posts,
       onepost: onepost,
       pagelength: 5
