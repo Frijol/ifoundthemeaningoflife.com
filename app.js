@@ -16,6 +16,9 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next) {
+  res.status(404).render('404');
+});
 
 // development only
 if ('development' == app.get('env')) {
