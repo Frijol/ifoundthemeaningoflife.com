@@ -98,6 +98,7 @@ a:hover {
 
 .pagination li.active {
   color: black;
+  font-weight: bold;
 }
 
 .sidebar {

@@ -43,39 +43,41 @@ block content
   
   .row
     .columns.large-12
-      h1 Adventures and Travels
+      a(href='/adventures')
+        h1 Adventures and Travels
       a(href='http://meaninglite.tumblr.com/')
         | Read on Tumblr: meaninglite.tumblr.com |
       a(href="https://www.instagram.com/kooshtakah/")  Follow along on Instagram: instagram.com/kooshtakah
       p <br/>
       +pagination()
   .row
-    .columns.large-3.right.sidebar
-      p
-        i Jump to first post in series:
-      +series("Iceland", "http://meaninglite.tumblr.com/post/147944883054/iceland-getting-to-laugavegur-july-20", "July 2016")
-      +series("Norway", "http://meaninglite.tumblr.com/post/145545203859/after-the-conference-norway", "June 2016")
-      +series("Nomadism", "http://meaninglite.tumblr.com/post/143518451719/its-strange-being-back-this-trip-has-been", "Spring/Summer 2016")
-      +series("Greece/Refugees", "http://meaninglite.tumblr.com/post/141297929454/&chi;%CE%AF&omicron;&upsilon;", "Spring 2016")
-      +series("Lebanon", "http://meaninglite.tumblr.com/post/140935387580/beirut-lebanon-first-impressions-outside-my", "March 2016")
-      +series("Bahamas", "http://meaninglite.tumblr.com/post/106828135699/the-bahamas-are-not-what-i-expected-i-thought-in", "New Year 2015")
-      +series("Costa Rica", "http://meaninglite.tumblr.com/post/14419259909/costa-rica-121811-i-wish-i-could-share-the", "December 2011")
-      +series("Chile", "http://meaninglite.tumblr.com/post/10735209101/hello-world", "Fall 2011")
-      +series("Burning Man & Solo Camping", "http://meaninglite.tumblr.com/post/10003818539/83011-931am-burning-man", "September 2011")
-      +series("Alaska", "http://meaninglite.tumblr.com/post/6116652364/hiking-in-the-muskeg-sunnyside-alaska-our", "June 2011")
-      +series("Hawaii", "http://meaninglite.tumblr.com/post/6096212962/hawaii-day-1", "December 2010")
-      +series("California", "http://meaninglite.tumblr.com/post/6096210164/hello-california", "June 2010")
-      +series("Nicaragua", "http://meaninglite.tumblr.com/post/6096209431/nicaragua", "May 2010")
-      +series("Europe/Orienteering", "http://meaninglite.tumblr.com/post/6096202919/europe", "Summer 2007")
-      +series("Chiapas, Mexico", "http://meaninglite.tumblr.com/post/6096197393/mexico-1", "Summer 2006")
-        
     .columns.large-9.left
       //- Ternary shows a single post or all posts on a page
       each post in onepost ? [onepost] : posts.slice(page*pagelength, (page+1)*pagelength)
-        p.tumblr_post
-          h2.tumblr_title
+        p
+          .tumblr_title
             a(href='/adventures/' + post.id + '/' + post.slug)=post.title
           i
-            p.date= 'Posted ' + new Date(post.timestamp*1000).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-          div.tumblr_body!= (post.body || '')
+            a(href='/adventures/' + post.id + '/' + post.slug)
+              p.date= 'Posted ' + new Date(post.timestamp*1000).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+          div.tumblr_body.tumblr_post!= (post.body || '')
       +pagination()
+    .columns.large-3.right.sidebar
+      - var baseURL = 'http://ifoundthemeaningoflife.com/adventures/'
+      p
+        i Jump to first post in series:
+      +series("Iceland", baseURL + "147944883054/iceland-getting-to-laugavegur-july-20", "July 2016")
+      +series("Norway", baseURL + "145545203859/after-the-conference-norway", "June 2016")
+      +series("Nomadism", baseURL + "143518451719/its-strange-being-back-this-trip-has-been", "Spring/Summer 2016")
+      +series("Greece/Refugees", baseURL + "141297929454/&chi;%CE%AF&omicron;&upsilon;", "Spring 2016")
+      +series("Lebanon", baseURL + "140935387580/beirut-lebanon-first-impressions-outside-my", "March 2016")
+      +series("Bahamas", baseURL + "106828135699/the-bahamas-are-not-what-i-expected-i-thought-in", "New Year 2015")
+      +series("Costa Rica", baseURL + "14419259909/costa-rica-121811-i-wish-i-could-share-the", "December 2011")
+      +series("Chile", baseURL + "10735209101/hello-world", "Fall 2011")
+      +series("Burning Man & Solo Camping", baseURL + "10003818539/83011-931am-burning-man", "September 2011")
+      +series("Alaska", baseURL + "6116652364/hiking-in-the-muskeg-sunnyside-alaska-our", "June 2011")
+      +series("Hawaii", baseURL + "6096212962/hawaii-day-1", "December 2010")
+      +series("California", baseURL + "6096210164/hello-california", "June 2010")
+      +series("Nicaragua", baseURL + "6096209431/nicaragua", "May 2010")
+      +series("Europe/Orienteering", baseURL + "6096202919/europe", "Summer 2007")
+      +series("Chiapas, Mexico", baseURL + "6096197393/mexico-1", "Summer 2006")
