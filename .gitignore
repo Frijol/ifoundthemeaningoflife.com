@@ -1,4 +1,4 @@
-# Logs
+ Logs
 logs
 *.log
 npm-debug.log*
@@ -35,3 +35,5 @@ jspm_packages
 Status API Training Shop Blog About
 
 *.DS_Store
+
+.env

@@ -49,7 +49,7 @@ a:hover {
 }
 
 .tumblr_posts {
-  color: white;
+  list-style-position: outside;
 }
 
 .tumblr_post {
@@ -61,6 +61,44 @@ a:hover {
   border-top: solid;
   border-top-width: .1em;
   padding-top: 1em;
+}
+
+.pagination, .pagination li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination {
+  text-align: left;
+  vertical-align: baseline;
+  line-height: 2em;
+  min-height: 2em;
+}
+
+.pagination ul {
+  overflow: auto;
+  margin: 0.5em 0 0.5em 0.5em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pagination li {
+  display: inline-block;
+}
+
+.pagination li a,
+.pagination li.active,
+.pagination li.empty {
+  width: 2.5em;
+  height: 2em;
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+.pagination li.active {
+  color: black;
+  font-weight: bold;
 }
 
 .sidebar {
