@@ -53,7 +53,7 @@ exports.blogRedirect = function(req, res) {
 };
 
 exports.blogRedirectPost = function (req, res) {
-  res.redirect('//meaninglite.tumblr.com/' + req.params.postid + '/' + req.params.slug);
+  res.redirect('//meaninglite.tumblr.com/post/' + req.params.postid + '/' + req.params.slug);
 };
 
 exports.blog = function (req, res) {
