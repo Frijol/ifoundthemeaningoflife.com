@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .row
+    .large-12.columns
+    h1 Thinking in Public: Blog index
+    h4
+      a(href="/adventures") Go to the blog &rarr;
+      
+    mixin series (title, link, date, description)
+      p
+
+        a(href=link) #{title}
+        i : #{date}
+        | !{'\n'}#{description}
+
+    - var baseURL = 'http://ifoundthemeaningoflife.com/adventures/'
+    
+    p The blog is not necessarily written in clear story arcs. It's chronological, and can skip between reflective pieces, essays, and more vanilla travel blogging. However, this index might be helpful for readers looking to start at the beginning of a given story.
+    
+    h4 Jump to first post in series:
+    
+    +series("Iceland", baseURL + "147944883054/iceland-getting-to-laugavegur-july-20", "July 2016", "Backpacking the multi-day, extraordinary Laguavegur trail.")
+    +series("Norway", baseURL + "145545203859/after-the-conference-norway", "June 2016", "Backpacking, hitchhiking, and environmental reflections. Mostly in Lofoten, a rocky archipelago in the far north of Norway.")
+    +series("Nomadism", baseURL + "143518451719/its-strange-being-back-this-trip-has-been", "Spring/Summer 2016", "Thoughts of a digital nomad, and the thought process behind the lifestyle.")
+    +series("Greece/Refugees", baseURL + "141297929454/&chi;%CE%AF&omicron;&upsilon;", "Spring 2016", "Volunteering in refugee camps on Chios and in Ritsona, working with largely Syrian refugees (especially children) coming into Europe via Greece.")
+    +series("Lebanon", baseURL + "140935387580/beirut-lebanon-first-impressions-outside-my", "March 2016", "First impressions of the Middle East, and time with Lebanese family.")
+    +series("Bahamas", baseURL + "106828135699/the-bahamas-are-not-what-i-expected-i-thought-in", "New Year 2015", "Family vacation at New Year's, including some time with local family friends.")
+    +series("Costa Rica", baseURL + "14419259909/costa-rica-121811-i-wish-i-could-share-the", "December 2011", "Family vacation/reunion after long separation, at Christmastime.")
+    +series("Chile", baseURL + "10735209101/hello-world", "Fall 2011", "A backpacking/hitchhiking trip with me (at age 20) and my father, spanning three months of walking, farming, and living without plans.")
+    +series("Burning Man & Solo Camping", baseURL + "10003818539/83011-931am-burning-man", "September 2011", "My first time at Burning Man, and then a week camping alone north of Tahoe.")
+    +series("Alaska", baseURL + "6116652364/hiking-in-the-muskeg-sunnyside-alaska-our", "June 2011", "Time on the wild beach of Sunnyside, Chichagof Island in Southeast Alaska (building a cabin).")
+    +series("Hawaii", baseURL + "6096212962/hawaii-day-1", "December 2010", "Family vacation on Hawaii's Big Island.")
+    +series("California", baseURL + "6096210164/hello-california", "June 2010", "Summer, startups, San Francisco.")
+    +series("Nicaragua", baseURL + "6096209431/nicaragua", "May 2010", "Adventure-oriented spring break with my friends, one of whom was our hostess all around the country.")
+    +series("Europe/Orienteering", baseURL + "6096202919/europe", "Summer 2007", "Orienteering regularly and seriously around Europe, especially the north of Italy, the west coast of France, and central Sweden.")
+    +series("Chiapas, Mexico", baseURL + "6096197393/mexico-1", "Summer 2006", "A solo trip I took as a 14 year old to stay with a family I'd never met in southern Mexico.")

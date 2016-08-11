@@ -26,6 +26,8 @@ exports.coding = standard('coding');
 
 exports.projects = standard('projects');
 
+exports.blogIndex = standard('blogIndex');
+
 exports.learntocode = function (req, res) {
 	res.render('learntocode', { title: 'Learn to Code'});
 };
