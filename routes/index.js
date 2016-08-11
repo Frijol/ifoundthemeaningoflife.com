@@ -46,6 +46,14 @@ exports.pelican = function (req, res) {
   res.render('pelican', {title: 'Pelican'});
 };
 
+exports.blogRedirect = function(req, res) {
+  res.redirect('//meaninglite.tumblr.com');
+};
+
+exports.blogRedirectPost = function (req, res) {
+  res.redirect('//meaninglite.tumblr.com/' + req.params.postid + '/' + req.params.slug);
+};
+
 exports.blog = function (req, res) {
   require('./tumblr').getPosts()
   .then(function (posts) {

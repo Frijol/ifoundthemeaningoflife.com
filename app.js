@@ -26,8 +26,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/adventures/?', routes.blog);
-app.get('/adventures/:postid/:slug?', routes.blogPost);
+app.get('/adventures/?', routes.blogRedirect);
+app.get('/adventures/:postid/:slug?', routes.blogRedirect);
+// app.get('/adventures/?', routes.blog);
+// app.get('/adventures/:postid/:slug?', routes.blogPost);
 app.get('/interviews', routes.interviews);
 app.get('/editing', routes.editing);
 app.get('/writing', routes.writing);
