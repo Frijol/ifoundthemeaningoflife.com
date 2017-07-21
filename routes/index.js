@@ -28,6 +28,10 @@ exports.projects = standard('projects');
 
 exports.blogIndex = standard('blogIndex');
 
+exports.climateChange = function (req, res) {
+  res.render('climateChange', {title: 'Climate Change Book'});
+};
+
 exports.learntocode = function (req, res) {
 	res.render('learntocode', { title: 'Learn to Code'});
 };
