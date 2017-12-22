@@ -2,7 +2,7 @@ var _ = require('lodash');
 
 function standard (name) {
   return function (req, res) {
-    res.render( name, { title: name });
+    res.render( name, { title: 'Kelsey Breseman– ' + name });
   };
 }
 
