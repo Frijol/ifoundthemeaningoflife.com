@@ -1,45 +1,63 @@
 extends layout
 
 block content
-  .main-container
-    h1 Writing
-    
-    h3
-      a(href="/climate-change-book") Climate Change for Changemakers
+  mixin published(title, link, image, description)
+    .row
+      .column.large-12
+        h4
+          a(href=link) #{title}
     .row
       .column.large-3
-        a(href="/climate-change-book")
-          img(src='https://lh3.googleusercontent.com/ZU9yYxVb1gCSMdL3M_WdZQEPzqUSQdYU106Xhj1lqNejnFD27BDgIoGT1q9z8AjtT-UJGegBr8I=w278-h437-no')
+        a(href=link)
+          img(src=image)
       .column.large-9
-        p
-          b My current main project:
-        p A book to help engineers and entrepreneurs get up to speed in the climate change sector.
-        p
-          a(href="climate-change-book") Check out the project page.
-        p
-          a(href="https://frijol.gitbooks.io/climate-change/content/") See the work in progress.
+        p !{description}
+  mixin medium(title, link, publication, publink)
+    li
+      a(href="link")
+        b #{title}
+      |  in
+      a(href="publink")  #{publication}
+        
+  .main-container
+    .row
+      .column.large-12
+        h1 Writing
 
-    
-    h3
-      a(href="/adventures") Adventure Blog
-    p Largely a travel blog, lately some thinkpieces as well. It updates frequently if I'm traveling, and very infrequently otherwise.
-    
-    h3
-      a(href="https://medium.com/@SelkeyMoonbeam") Medium
-    p Longer & encapsulated thoughts.
-    
-    h3
-      a(href="https://www.amazon.com/gp/product/B01M23XEHZ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01M23XEHZ&linkCode=as2&tag=ifoundthemean-20&linkId=cb1565a74c88ee9b7cf0bc41d89b4db2") Node.JS for Embedded Systems
-    p Published book: O'Reilly 2016
-    
-    h3
-      a(href="/interviews") Interviews
-    p I like to interview interesting people, to see if I can tell their stories.
-    
-    h3
-      a(href="http://digitalcommons.olin.edu/cgi/viewcontent.cgi?article=1025&context=ahs_capstone_2012") Short stories (pdf)
-    p In the fall of 2012, I spent three months backpacking Chile with my father. Over the course of the following year, I wrote these short stories based on my travels.
-    
-    h3 Free editing
-    p Want someone to comment all over your post/paper/manuscript? I love tearing apart writing and helping people improve. Tweet at me if you're interested.
-    
+    .row
+      .column.large-6
+        h3 Published Work
+        +published('Node.JS for Embedded Systems', 'https://www.amazon.com/gp/product/B01M23XEHZ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01M23XEHZ&linkCode=as2&tag=ifoundthemean-20&linkId=cb1565a74c88ee9b7cf0bc41d89b4db2', 'https://covers.oreillystatic.com/images/0636920041504/lrg.jpg', 'How can we build bridges from the digital world of the Internet to the analog world that surrounds us? By bringing accessibility to embedded components such as sensors and microcontrollers, JavaScript and Node.js might shape the world of physical computing as they did for web browsers. This practical guide shows hardware and software engineers, makers, and web developers how to talk in JavaScript with a variety of hardware platforms. Authors Patrick Mulder and Kelsey Breseman also delve into the basics of microcontrollers, single-board computers, and other hardware components.')
+        +published('Medium top writer on Energy', 'https://blog.hc3.io/tagged/energy','https://cdn-images-1.medium.com/max/320/1*zEbIJ4kDI4TGj9Uqz1O94g.png', 'Top Writer status on Medium is for \"writers who are publishing quality content about a specific topic on a regular basis.\" My Energy-tagged posts on Medium explain the details of home solar arrays and contracts for better-informed consumer decision-making. Other posts in HC3 are more broad-based energy and environmental impact-focused.')
+        .row
+          .column.large-12
+            h4 Medium posts in publications
+            p
+              ul
+                +medium('Natural Gas: A Quick Look at the Biggest Mover in the American Energy World', 'https://extranewsfeed.com/natural-gas-a-quick-look-at-the-biggest-mover-in-the-american-energy-world-91060d81f015', 'Extra Newsfeed', 'https://extranewsfeed.com/')
+                +medium('Do Your Reps Represent You?', 'https://medium.com/everyvote/do-your-reps-represent-you-23c5967644e5', 'Indivisible Movement', 'https://medium.com/everyvote')
+                +medium('How It Feels to Teach Yourself to Code: An Extended Metaphor', 'https://medium.com/ladies-storm-hackathons/theres-this-weird-thing-about-programming-aac366676f16', 'Ladies Storm Hackathons', 'https://medium.com/ladies-storm-hackathons')
+                +medium('How (and why) to volunteer at refugee camps in Greece', 'https://medium.com/shenomads/how-and-why-to-volunteer-at-refugee-camps-in-greece-b048d82b8d39', 'SheNomads', 'https://medium.com/shenomads')
+
+      .column.large-6
+        h3 Projects in Progress
+        h4
+          a(href="/climate-change-book") Climate Change for Changemakers
+        .row
+          .column.large-3
+            a(href="/climate-change-book")
+              img(src='https://lh3.googleusercontent.com/ZU9yYxVb1gCSMdL3M_WdZQEPzqUSQdYU106Xhj1lqNejnFD27BDgIoGT1q9z8AjtT-UJGegBr8I=w278-h437-no')
+          .column.large-9
+            p A book to help engineers and entrepreneurs get up to speed in the climate change sector.
+            p
+              b
+                a(href="climate-change-book") Check out the project page!
+            p
+              a(href="https://frijol.gitbooks.io/climate-change/content/") See the work in progress.<br/><br/>
+
+        .row
+          .column.large-12
+            h4 Writer for hire!
+            p Kelsey can be hired for research or editorial posts exploring topics within energy, IoT, and impact.
+            a.button.large.round(href="//twitter.com/ifoundtheme") Ask Kelsey to write
+          
