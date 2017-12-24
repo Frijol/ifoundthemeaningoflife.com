@@ -14,10 +14,10 @@ block content
         p !{description}
   mixin medium(title, link, publication, publink)
     li
-      a(href="link")
+      a(href=link)
         b #{title}
       |  in
-      a(href="publink")  #{publication}
+      a(href=publink)  #{publication}
         
   .main-container
     .row
