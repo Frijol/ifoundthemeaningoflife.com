@@ -52,6 +52,10 @@ exports.pelican = function (req, res) {
   res.render('pelican', {title: 'Pelican'});
 };
 
+exports.oom = function (req, res) {
+  res.redirect('https://frijol.gitbooks.io/orienteering-software-tutorials/content/');
+};
+
 exports.blogRedirect = function(req, res) {
   res.redirect('//meaninglite.tumblr.com');
 };
