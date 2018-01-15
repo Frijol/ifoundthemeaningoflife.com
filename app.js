@@ -43,6 +43,7 @@ app.get('/learntocode/cmd101mac', routes.cmd101mac);
 app.get('/learntocode/cmd101win', routes.cmd101win);
 app.get('/cadence', routes.cadence);
 app.get('/pelican', routes.pelican);
+app.get('/oom', routes.oom);
 app.get('/climate-change-book', routes.climateChange);
 
 http.createServer(app).listen(app.get('port'), function(){
