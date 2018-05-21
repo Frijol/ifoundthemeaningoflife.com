@@ -27,9 +27,6 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/adventures/?', routes.blogRedirect);
-app.get('/adventures/:postid/:slug?', routes.blogRedirectPost);
-// app.get('/adventures/?', routes.blog);
-// app.get('/adventures/:postid/:slug?', routes.blogPost);
 app.get('/blogIndex', routes.blogIndex);
 app.get('/interviews', routes.interviews);
 app.get('/editing', routes.editing);

@@ -57,45 +57,5 @@ exports.oom = function (req, res) {
 };
 
 exports.blogRedirect = function(req, res) {
-  res.redirect('//meaninglite.tumblr.com');
-};
-
-exports.blogRedirectPost = function (req, res) {
-  res.redirect('//meaninglite.tumblr.com/post/' + req.params.postid + '/' + req.params.slug);
-};
-
-exports.blog = function (req, res) {
-  require('./tumblr').getPosts()
-  .then(function (posts) {
-    res.render('adventures', {
-      title: 'adventures',
-      postsbymonth: _.groupBy(posts, function (post) {
-        var d = new Date(post.timestamp*1000);
-        return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
-      }),
-      posts: posts,
-      page: (parseInt(req.query.page || '1') || 1) - 1,
-      pagelength: 5
-    });
-  });
-};
-
-exports.blogPost = function (req, res) {
-  require('./tumblr').getPosts()
-    .then(function (posts) {
-      var onepost = posts.filter(function (post) {
-        return post.id == req.params.postid;
-      })[0];
-      console.log(onepost.photos[0])
-      res.render('adventures', {
-        title: (onepost ? onepost.title + ' | ' : 'adventures'),
-        postsbymonth: _.groupBy(posts, function (post) {
-          var d = new Date(post.timestamp*1000);
-          return d.toLocaleString('en-US', { month: "long", year: 'numeric' });
-        }),
-      posts: posts,
-      onepost: onepost,
-      pagelength: 5
-    });
-  });
+  res.redirect('//medium.com/@SelkeyMoonbeam');
 };
