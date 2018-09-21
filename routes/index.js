@@ -57,5 +57,5 @@ exports.oom = function (req, res) {
 };
 
 exports.blogRedirect = function(req, res) {
-  res.redirect('//medium.com/@SelkeyMoonbeam');
+  res.redirect('//medium.com/@ifoundtheme');
 };
