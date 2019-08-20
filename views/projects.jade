@@ -2,10 +2,10 @@ extends layout
 
 block content
   mixin current(title, link)
-    .columns.large-3
-      h2 
+    .columns.small-3
+      h2(style="padding-right: 1em;")
         a(href=link) #{title}
-  
+
   mixin project(pic, title, description, link)
     .row(style="margin-top: 20px")
       .columns.large-5
@@ -17,29 +17,27 @@ block content
         p #{description}
         p
           a(href=link) See more &rarr;
-  
+
   .row
     .columns.large-12
       h1 Projects
-      
+
       h3 Currently working on:  
-  .row(style="margin-bottom: 2em")
+  .row(style="margin-bottom: 2em;")
+    +current("Environmental Data & Governance Initiative","//envirodatagov.org")
+    +current("Data Together","//datatogether.org")
     +current("Climate Change Book", "/climate-change-book")
-    
-    +current("Climate Change Notes", "https://frijol.gitbooks.io/climate-change/content/")
-    
-    +current("Modern Cartography Tutorials", "https://frijol.gitbooks.io/orienteering-software-tutorials/content/")
-    
     +current("Tessel Project Governance", "//github.com/tessel/project")
-      
+
   .row
     .columns.large-12      
       h3 Selected past projects:
-      
+      +project('https://user-images.githubusercontent.com/454690/35169785-bb9a2c70-fd12-11e7-9198-80af2e0c0cb3.png', 'Tutorials for Modern Cartography', 'These tutorials introduce the basics of map creation using free software, internet-available resources, and fieldwork using smartphones for georeferencing. Target software is Open Orienteering Mapper; other key tools include Runkeeper, Open Street Map, and GPS Essentials.', 'https://frijol.gitbooks.io/orienteering-software-tutorials/content/')
+
       +project('https://cloud.githubusercontent.com/assets/454690/25315404/40642594-2809-11e7-9a00-615717c7f192.png', 'Navigation Instruction', 'My family competes internationally in a sport called orienteering. The sport was originally invented to teach land navigation to the Norwegian military– we use topographic maps to find our way, off-trail, at top speed. My father and I have a video series teaching techniques, meanwhile exploring the changing face of minimum-cost production (80/20 principle youtube filming).', 'https://www.youtube.com/channel/UCHL_yvJmGNWvDxVBl4MIocQ')
-      
+
       +project('https://d.gr-assets.com/books/1461664102l/26457170.jpg', 'Node.JS for Embedded Systems', 'This practical book shows you how to build web applications that connect devices to the Internet of Things, using JavaScript and the Node.js platform. Programming Arduino boards in C or C++ is great for quickly prototyping and exploring embedded systems, but if you want to control or monitor hardware from web browsers, you need to start speaking JavaScript.', 'https://www.amazon.com/gp/product/B01M23XEHZ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01M23XEHZ&linkCode=as2&tag=ifoundthemean-20&linkId=cb1565a74c88ee9b7cf0bc41d89b4db2')
-      
+
       +project('https://lh3.googleusercontent.com/-e7NhMX3LP2Q/VQye2vDy3BI/AAAAAAAANJk/vIwVBDOETag/w782-h419-no/Screen%2BShot%2B2015-03-20%2Bat%2B3.26.58%2BPM.png', "Tessel's First Run", "I designed and built the first run experience for Tessel. My objective: create the fastest and most enjoyable experience possible for going from zero hardware experience (and possibly no programming) to successful interaction between physical and digital parts. I designed and implemented this website, tested with users, and iterated on the design. For the average user, it takes under five minutes from unboxing to blinking lights.", 'https://github.com/technicalmachine/start.tessel.io')
       +project('https://lh6.googleusercontent.com/-50QKZj_ArNA/VQyjaECk4hI/AAAAAAAANKA/xQsiiuuerc8/w800-h464-no/Screen%2BShot%2B2015-03-20%2Bat%2B3.43.36%2BPM.png', "Beginner's Guide to Communication Protocols", "When Technical Machine introduced a DIY module, we felt we needed to bridge the gap between the electrical engineering required to use it and the web developer knowledge of most of our customers. I worked with a contractor to write this beginner's guide to communication protocols, which introduces an electrical engineering novice to GPIO, SPI, I2C, and UART.", 'https://tessel.io/docs/communicationProtocols')
       +project('https://halckemy.s3.amazonaws.com/uploads/cover_image/file/26770/cover_original-11-1413855461279-landscape-main.jpg', 'Tesselbot: RC Sumobot', "I made this websocket-controlled remote control car. It's all open source parts, based on laser cut files, and fun to play with!", 'http://www.hackster.io/ifoundthemeaningoflife/rc-sumobot')
@@ -47,7 +45,7 @@ block content
       +project('http://cdn.instructables.com/FLF/OT13/H2WEQ2FP/FLFOT13H2WEQ2FP.LARGE.jpg', '3D Print Faux Gauge Earrings', 'This was a fun experiment in playing around with high-quality 3D printers, professional AutoCAD, crafting, and costumery. I CADed up some gauge earrings, printed them, then reconstructed to fit regular earholes.', 'http://www.instructables.com/file/FLFOT13H2WEQ2FP')
       +project('http://cdn.instructables.com/FTW/R70Z/H3O7LHA0/FTWR70ZH3O7LHA0.MEDIUM.jpg', 'Laser Cut World Clock', "Based on an existing time for a world clock, this laser cut clock is a cheap and simple way to tell the time anywhere in the world. Just rotate the clock so that the name of a city in the desired time zone is the right way up, and the clock's hands should be in the correct position.", "http://www.instructables.com/id/World-Clock/")
       +project('http://cdn.instructables.com/FPZ/XGUQ/H2CE6ZCL/FPZXGUQH2CE6ZCL.LARGE.jpg', 'Mathematically Fitted Clothing Design: Infinity Dress', "In order to fit the various shapes of people, most clothing patterns come with several \"standard\" sizes, all based on some average shape of human. There's a lot more variety to people than you can get out of some averaged outlines. This pattern is my experiment in designing pattern geometries that are fully defined by measurements of the wearer's body.", 'http://www.instructables.com/file/FPZXGUQH2CE6ZCL')
-      
+
       h3 See all my work:
       p
         a(href="//github.com/Frijol") Github (Code projects, webapps, and more) 
