@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   res.status(404).render('404');
 });
+app.use(express.static('public'))
 
 // development only
 if ('development' == app.get('env')) {

@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/ifoundtheme
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://ifoundthemeaningoflife.com
+  * I am ifoundtheme (https://keybase.io/ifoundtheme) on keybase.
+  * I have a public key ASDY6rn0zIC4XXxyzjTBGYX1Gg-_eyPZVSFgpl37RfuSrgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120d8eab9f4cc80b85d7c72ce34c11985f51a0fbf7b23d9552160a65dfb45fb92ae0a",
+      "host": "keybase.io",
+      "kid": "0120d8eab9f4cc80b85d7c72ce34c11985f51a0fbf7b23d9552160a65dfb45fb92ae0a",
+      "uid": "e329e2fdfd8e32714812ecd4cfff8c19",
+      "username": "ifoundtheme"
+    },
+    "merkle_root": {
+      "ctime": 1573606098,
+      "hash": "f42b11f28995ec85b0e0bd70654720d36e98ee5f150d437bb4a46646e8398ddd2bdf3b8c3b053d5e5005852932ed92f2b0b25d6e55a6c2120e559f9bef240c09",
+      "hash_meta": "29db8566bf7029a3b17350fc910208c1b312bea95811091fac45b8346d6b8a46",
+      "seqno": 9292257
+    },
+    "service": {
+      "entropy": "EnNX8Sg9ode8dvAaVCY9kVN5",
+      "hostname": "ifoundthemeaningoflife.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.7.2"
+  },
+  "ctime": 1573606107,
+  "expire_in": 504576000,
+  "prev": "9f8b7c1968abddecb09d5289b553aa03eaaba8aa53605a28a16277897b0ac75a",
+  "seqno": 15,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg2Oq59MyAuF18cs40wRmF9RoPv3sj2VUhYKZd+0X7kq4Kp3BheWxvYWTESpcCD8Qgn4t8GWir3eywnVKJtVOqA+qrqKpTYFoooWJ3iXsKx1rEIELm/gAuQL3P2N2glRc1+BPy+8iv/LT3nvKFSKu9qmMlAgHCo3NpZ8RAVpyfPhoQ4bgYHhsQ92q6Q25HjHyzaLojQtCCGH6eFL0lZevs6HyC96qqxEwPz34B/9V4SbzgNIZFAgWMY7tgBqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIL8obX7vn+JDnjT9exnhwb8+Ib28OdgYY93173KVaAJTo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ifoundtheme
+
+==================================================================
