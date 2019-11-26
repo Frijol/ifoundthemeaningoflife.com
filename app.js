@@ -42,6 +42,7 @@ app.get('/cadence', routes.cadence);
 app.get('/pelican', routes.pelican);
 app.get('/oom', routes.oom);
 app.get('/climate-change-book', routes.climateChange);
+app.get('/yule', routes.yule)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

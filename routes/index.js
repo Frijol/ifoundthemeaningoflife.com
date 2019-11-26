@@ -28,6 +28,8 @@ exports.projects = standard('projects');
 
 exports.blogIndex = standard('blogIndex');
 
+exports.yule = standard('yule');
+
 exports.climateChange = function (req, res) {
   res.render('climateChange', {title: 'Climate Change Book'});
 };
