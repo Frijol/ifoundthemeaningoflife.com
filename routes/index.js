@@ -61,3 +61,11 @@ exports.oom = function (req, res) {
 exports.blogRedirect = function(req, res) {
   res.redirect('//medium.com/@ifoundtheme');
 };
+
+exports.lituya = function(req, res) {
+  res.redirect('https://docs.google.com/document/d/1i8jQvZ7hx--KG3jRFhxBs-ej7HPpC3qjj1OLpEoKLnU/edit?usp=sharing');
+};
+
+exports.sanjuans = function(req, res) {
+  res.redirect('https://docs.google.com/document/d/1wlsHaqT478m3ml9DkGXnYh6P6nfKwhQ3cn-OHphMwbo/edit');
+};
