@@ -15,6 +15,6 @@
     "tumblr.js": "^1.1.1"
   },
   "devDependencies": {
-    "assemble": "~0.4.35"
+    "assemble": "^0.24.3"
   }
 }
