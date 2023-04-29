@@ -1,0 +1,14 @@
+[
+  {
+    "fromPath": "/adventures",
+    "toPath": "https://medium.com/@ifoundtheme"
+  },
+  {
+    "fromPath": "/blog",
+    "toPath": "/adventures"
+  },
+  {
+    "fromPath": "/oom",
+    "toPath": "https://frijol.gitbooks.io/orienteering-software-tutorials/content/"
+  }
+]

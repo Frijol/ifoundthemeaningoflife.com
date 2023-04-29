@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: ifoundthemeaningoflife.com
-Token: 633416e7ac4f8631905037a29644a912a16b0615c253ebb3e09601f51bc9a86f

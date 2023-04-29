@@ -1,0 +1,43 @@
+@import './constants.scss';
+
+footer {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: $darkprimary;
+  color: lightgray;
+  display: flex;
+  justify-content: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div a {
+      margin: 10px;
+      color: lightgray;
+    }
+  }
+  img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-top: 20px;
+  }
+  .socialMediaLinks.row {
+    align-items: center;
+    justify-content: center;
+    img {
+      max-height: 30px;
+      max-width: 30px;
+      
+      // Change the background-color of the social media img svgs on hover
+      // Implementation based on this Stack Overflow answer
+      // https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
+      // Must be set separately from other $primaryaccent colors.
+
+      // Always begin with brightness(0) and saturate(100%), required since our SVGs are white by default
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(90%) sepia(60%) saturate(3794%) hue-rotate(340deg) brightness(104%) contrast(94%);
+      }
+    }
+  }
+}

@@ -1,0 +1,189 @@
+@import './constants.scss';
+$headerHeight: 120px;
+
+header {
+  background-color: $lightprimary;
+  display: flex;
+  justify-content: center;
+  height: $headerHeight;
+
+  position: sticky;
+  top: 0px;
+  z-index:1;
+  opacity: 0.9;
+
+  a {
+    color: $primary;
+    font-size: 14pt;
+    font-weight: normal;
+    text-transform: uppercase;
+    width: auto;
+    overflow: hidden;
+
+    /* Don't show this animation on mobile */
+    @media (min-width: 1000px) {
+      /* Left-to-right hover animation */
+      /* Implementation taken from https://stackoverflow.com/questions/17212094/fill-background-color-left-to-right-css */
+      & {
+        background: linear-gradient(to left, transparent 51%, $primaryaccent 50%) right;
+        background-size: 200%;
+        transition: .4s ease-in-out;
+      }
+      &:hover:not(.button) {
+        background-color: $primaryaccent;
+        background-position: left;
+      }
+    }
+  }
+
+  #HeaderLogo {
+    padding: 0;
+    background-image: url('../images/logo.png');
+    background-size: $headerHeight - 10;
+    height: $headerHeight - 10;
+    width: $headerHeight - 10;
+    transition: transform 0.5s;
+    &:hover {
+      background-color: transparent;
+      border-bottom: none;
+      transform: scale(0.95);
+    }
+  }
+
+  .container {
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .active {
+    border-bottom: 1px solid $secondaryaccent;
+    text-underline-offset: 8px;
+    background-color: $primaryaccent;
+  }
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  .MenuIcon {
+    display: none;
+  }
+
+  .headerItem:hover ul {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+  
+  .headerItem {
+    > a:not(.button) {
+      padding: 0 5px 0 5px;
+    }
+    ul {
+      transition: visibility 0s, opacity 0.3s linear;
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        background-color: $darkprimary;
+        padding: 18px;
+        border-bottom: 1px solid black;
+        color: white;
+        &:hover {
+          background-color: darken($darkprimary, 10);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    & {
+      height: auto;
+    }
+    #HeaderLogo {
+      align-self: flex-start;
+      height: $headerHeight;
+      width: $headerHeight;
+      background-size: $headerHeight;
+    }
+    .headerItem {
+      display: none;
+    }
+    #HeaderLogo {
+      align-self: flex-start;
+      height: $headerHeight;
+      width: $headerHeight;
+      background-size: $headerHeight;
+    }
+    .MenuIcon {
+      background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjMwMHB4IiB3aWR0aD0iMzAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHg9IjBweCIgeT0iMHB4Ij48cGF0aCBkPSJNOTIgMTRIOEM0LjY4NjI5IDE0IDIgMTYuNjg2MyAyIDIwQzIgMjMuMzEzNyA0LjY4NjI5IDI2IDggMjZIOTJDOTUuMzEzNyAyNiA5OCAyMy4zMTM3IDk4IDIwQzk4IDE2LjY4NjMgOTUuMzEzNyAxNCA5MiAxNFoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTkyIDQ0SDhDNC42ODYyOSA0NCAyIDQ2LjY4NjMgMiA1MEMyIDUzLjMxMzcgNC42ODYyOSA1NiA4IDU2SDkyQzk1LjMxMzcgNTYgOTggNTMuMzEzNyA5OCA1MEM5OCA0Ni42ODYzIDk1LjMxMzcgNDQgOTIgNDRaIiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik04IDc0SDkyQzk1LjMxMzcgNzQgOTggNzYuNjg2MyA5OCA4MEM5OCA4My4zMTM3IDk1LjMxMzcgODYgOTIgODZIOEM0LjY4NjI5IDg2IDIgODMuMzEzNyAyIDgwQzIgNzYuNjg2MyA0LjY4NjI5IDc0IDggNzRaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==');
+      $width: 50px;
+      $height: 50px;
+      display: block;
+      
+      width: $width;
+      height: $height;
+      background-repeat: no-repeat;
+      background-size: $width $height;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+        transition: all ease 500ms;
+      }
+    }
+    input:checked + nav {
+      z-index: 2;
+      flex-direction: column;
+      .MenuIcon {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjMwMHB4IiB3aWR0aD0iMzAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4PSIwcHgiIHk9IjBweCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjcwNzExIDUuMjkyODlDNi4zMTY1OCA0LjkwMjM3IDUuNjgzNDIgNC45MDIzNyA1LjI5Mjg5IDUuMjkyODlDNC45MDIzNyA1LjY4MzQyIDQuOTAyMzcgNi4zMTY1OCA1LjI5Mjg5IDYuNzA3MTFMMTAuNTg1OCAxMkw1LjI5Mjg5IDE3LjI5MjlDNC45MDIzNyAxNy42ODM0IDQuOTAyMzcgMTguMzE2NiA1LjI5Mjg5IDE4LjcwNzFDNS42ODM0MiAxOS4wOTc2IDYuMzE2NTggMTkuMDk3NiA2LjcwNzExIDE4LjcwNzFMMTIgMTMuNDE0MkwxNy4yOTI5IDE4LjcwNzFDMTcuNjgzNCAxOS4wOTc2IDE4LjMxNjYgMTkuMDk3NiAxOC43MDcxIDE4LjcwNzFDMTkuMDk3NiAxOC4zMTY2IDE5LjA5NzYgMTcuNjgzNCAxOC43MDcxIDE3LjI5MjlMMTMuNDE0MiAxMkwxOC43MDcxIDYuNzA3MTFDMTkuMDk3NiA2LjMxNjU4IDE5LjA5NzYgNS42ODM0MiAxOC43MDcxIDUuMjkyODlDMTguMzE2NiA0LjkwMjM3IDE3LjY4MzQgNC45MDIzNyAxNy4yOTI5IDUuMjkyODlMMTIgMTAuNTg1OEw2LjcwNzExIDUuMjkyODlaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==');
+        align-self: flex-end;
+      }
+
+      .headerItem:hover ul {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+      }
+      
+      .headerItem {
+        display: block;
+        & > a {
+          padding: 18px;
+          background-color: darken($darkprimary, 10);
+          display: block;
+          color: white;
+        }
+        a:hover {
+          background-color: lighten($darkprimary, 10);
+        }
+        ul {
+          transition: visibility 0s, opacity 0.3s linear;
+          position: relative;
+          opacity: 1;
+          visibility: visible;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {
+            background-color: $darkprimary;
+            padding: 18px;
+            border-bottom: 1px solid black;
+            color: white;
+            &:hover {
+              background-color: darken($darkprimary, 10);
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+  input {
+    display: none;
+  }
+  box-shadow: 0px 2px 1px rgb(139, 136, 136);
+}
