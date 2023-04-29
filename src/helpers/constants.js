@@ -17,7 +17,7 @@ export const HeaderLinks = [
   },
   {
     text: "Blog",
-    url: "/blog",
+    url: "https://ifoundtheme.medium.com/",
   },
 ];
 
