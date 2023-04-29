@@ -1,6 +1,7 @@
 import * as React from "react"
 import Layout from '../components/Layout'
 import '../styles/styles.scss'
+import ForestPath from "../images/forest.jpg"
 
 const IndexPage = () =>
   <Layout pageTitle="Home" activeHeaderLink="Home">
@@ -12,5 +13,6 @@ const IndexPage = () =>
           <li>It is important to work on things that contribute to a future you want– ideally with a majority of your time.</li>
           <li>Living well includes breathing deeply, being outside, and going to sleep tired at the end of the day.</li>
         </ul>
+    <img src={ ForestPath } alt="Kelsey's home forest" />
   </Layout>
 export default IndexPage
