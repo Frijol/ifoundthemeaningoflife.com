@@ -8,7 +8,7 @@ const Notification = ({pageTitle, notificationText, link}) =>
           <input type='checkbox'/>
           <nav>
             <div id='CloseIcon'></div>
-            <a href={link} target='_blank'>
+            <a href={link} target='_blank', rel='noreferrer'>
               <strong>{notificationText}</strong>
             </a>
           </nav>

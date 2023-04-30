@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Link } from 'gatsby'
 import '../styles/Footer.scss'
 import {FooterSocialLinks} from '../helpers/constants'
 

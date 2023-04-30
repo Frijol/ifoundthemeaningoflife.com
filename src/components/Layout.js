@@ -1,6 +1,5 @@
 import * as React from "react"
 import Header from '../components/Header'
-import Notification from '../components/Notification'
 import Head from '../components/Head'
 import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
