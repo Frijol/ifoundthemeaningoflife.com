@@ -13,6 +13,15 @@ const IndexPage = () =>
           <li>It is important to work on things that contribute to a future you want– ideally with a majority of your time.</li>
           <li>Living well includes breathing deeply, being outside, and going to sleep tired at the end of the day.</li>
         </ul>
+
+    <h4>Freelancer for hire</h4>
+    <p>For hire across a variety of skillsets (see links in footer for examples and contact):</p>
+    <ul>
+      <li>Writing</li>
+      <li>Photography</li>
+      <li>Art & Illustration</li>
+      <li>UX and Web Development</li>
+    </ul>
     <img src={ ForestPath } alt="Kelsey's home forest" />
   </Layout>
 export default IndexPage
