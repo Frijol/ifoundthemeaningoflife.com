@@ -1,0 +1,57 @@
+## Created with gatsby-plugin-netlify
+
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: same-origin
+/static/logo-50a6558a9a7827eb6ce39e4d6cb145a2.png
+  Cache-Control: public, max-age=31536000, immutable
+/static/404-8f0065a511b5ba1ab92f73dad75a4e29.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/static/forest-436e567058112918c6c5b1d2f8079496.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/styles.4769a80c11a7dd4cce30.css
+  Cache-Control: public, max-age=31536000, immutable
+/framework-7568cc695e4300e71896.js.LICENSE.txt
+  Cache-Control: public, max-age=31536000, immutable
+/app-67a049819671726a6c6a.js
+  Cache-Control: public, max-age=31536000, immutable
+/webpack-runtime-6c31756e21ce802fd650.js
+  Cache-Control: public, max-age=31536000, immutable
+/223-b6125377810b19966e90.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-404-mdx-f0277058a215ee69346a.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-art-mdx-753ab1557a52a10e1cda.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-index-js-02b10f1e1dc94c5cebbf.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-pelican-mdx-6f4710ca934c08a4f848.js
+  Cache-Control: public, max-age=31536000, immutable
+/843-8fe9f0e70d30eab1b5af.js
+  Cache-Control: public, max-age=31536000, immutable
+/framework-7568cc695e4300e71896.js
+  Cache-Control: public, max-age=31536000, immutable
+/app-67a049819671726a6c6a.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/webpack-runtime-6c31756e21ce802fd650.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/223-b6125377810b19966e90.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-404-mdx-f0277058a215ee69346a.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-art-mdx-753ab1557a52a10e1cda.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-index-js-02b10f1e1dc94c5cebbf.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-pelican-mdx-6f4710ca934c08a4f848.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/843-8fe9f0e70d30eab1b5af.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/framework-7568cc695e4300e71896.js.map
+  Cache-Control: public, max-age=31536000, immutable
+/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/sw.js
+  Cache-Control: no-cache
