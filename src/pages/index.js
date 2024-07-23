@@ -5,8 +5,8 @@ import ForestPath from "../images/forest.jpg"
 
 const IndexPage = () =>
   <Layout pageTitle="Home" activeHeaderLink="Home">
-    <h1>I'm Kelsey Breseman.</h1>
-    <p>I'm working on data ownership models, environmental accountability, and intentional community. I'm also a neural engineer, a lover of the woods, and an <a href="/adventures">adventurer</a>.</p>
+    <h1>Kelsey Breseman</h1>
+    <p>Writing, art, <a href="/adventures">adventures</a>, engineering.</p>
     <h4>Some things I care about:</h4>
         <ul>
           <li>Community, transparency, and openness drive innovation.</li>
