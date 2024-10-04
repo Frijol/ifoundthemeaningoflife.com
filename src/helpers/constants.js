@@ -17,7 +17,7 @@ export const HeaderLinks = [
   },
   {
     text: "Blog",
-    url: "https://ifoundtheme.medium.com/",
+    url: "https://ifoundtheme.substack.com/",
   },
 ];
 
@@ -86,6 +86,6 @@ export const FooterSocialLinks = [
     text: "OrcID",
     url: "https://orcid.org/0000-0003-1348-3139",
     logo:OrcidLogo,
-    title: "Follow my writing on Medium",
+    title: "See my academic publications",
   },
 ];
