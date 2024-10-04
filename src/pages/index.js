@@ -7,6 +7,9 @@ const IndexPage = () =>
   <Layout pageTitle="Home" activeHeaderLink="Home">
     <h1>Kelsey Breseman</h1>
     <p>Writing, art, <a href="/adventures">adventures</a>, engineering.</p>
+
+    <iframe src="https://ifoundtheme.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+  
     <h4>Some things I care about:</h4>
         <ul>
           <li>Community, transparency, and openness drive innovation.</li>
