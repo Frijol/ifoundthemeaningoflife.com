@@ -6,7 +6,7 @@ import ForestPath from "../images/forest.jpg"
 const IndexPage = () =>
   <Layout pageTitle="Home" activeHeaderLink="Home">
     <h1>Kelsey Breseman</h1>
-    <p>Writing, art, <a href="/adventures">adventures</a>, engineering.</p>
+    <p>Writing, <a href="https://ifoundtheme.my.canva.site/">art</a>, <a href="/adventures">adventures</a>, engineering.</p>
 
     <iframe src="https://ifoundtheme.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
   
@@ -22,7 +22,7 @@ const IndexPage = () =>
     <ul>
       <li>Writing</li>
       <li>Photography</li>
-      <li>Art & Illustration</li>
+      <li><a href="https://ifoundtheme.my.canva.site/">Art & Illustration</a></li>
       <li>UX and Web Development</li>
     </ul>
     <img src={ ForestPath } alt="Kelsey's home forest" />
