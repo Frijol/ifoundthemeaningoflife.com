@@ -1,35 +1,49 @@
-# Personal Website of Kelsey Breseman
-Hosted at [ifoundthemeaningoflife.com](//ifoundthemeaningoflife.com) via Netlify. Automatically deploys on push to main.
+<p align="center">
+  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby Minimal Starter
+</h1>
 
-# Notes from theme
-## Pages
-Every page in your website should be put in the /pages directory. We recommend having your file-structure as closely as possible match your website's sitemap.
+## 🚀 Quick start
 
-## Layout Components
-These components define the basic layout system of this template.
-* Layout
-* Header (and HeaderItem)
-* Footer
-* Sidebar
+1.  **Create a Gatsby site.**
 
-## Layout
-Every page should be wrapped inside of a layout. This template only provides one out of the box, so it's called Layout. As you develop more pages with different purposes you may develop alternative layouts.
+    Use the Gatsby CLI to create a new site, specifying the minimal starter.
 
-The included Layout works by insterting page content into ```<main>``` between Header and Footer components. It also includes an optional sidebar. Information for the header and sidebar must be passed in from the page and are imported from /helpers/constants.js.
+    ```shell
+    # create a new Gatsby site using the minimal starter
+    npm init gatsby
+    ```
 
-Also inserts site metadata by including the ```<Head>``` component.
+2.  **Start developing.**
 
-## Header
-Rendered at the top of Layout. Contains site logo and header links defined in /helpers/constants.js. Can display nested links if sublinks are included.
+    Navigate into your new site’s directory and start it up.
 
-## Footer
-Rendered at the bottom of Layout. Contains site logo and social media links. These values are hardcoded in the Footer component.
+    ```shell
+    cd my-gatsby-site/
+    npm run develop
+    ```
 
-## Sidebar
-Optionally rendered on the left side of Layout. Not displayed on mobile. Link information is stored in /helpers/constants.js and are passed in by the page that is rendering it.
+3.  **Open the code and start customizing!**
 
-# Site metadata
-Site metadata such as the thumbnail image and description are managed by ReactHelmet and inserted into the site from the ```<Head>``` component (which resides in ```<Layout>```).
+    Your site is now running at http://localhost:8000!
 
-# Theming
-Site theming is done through the `.scss` files in /styles. Sitewide styles like theme colors are best stored in constants.scss while most other styles are in styles.scss. If styles starts.scss getting long or overly complicated then component styles can be refactored into their own .scss file, as seen with header.scss.
+    Edit `src/pages/index.js` to see your site update in real-time!
+
+4.  **Learn more**
+
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+## 🚀 Quick start (Netlify)
+
+Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+
+[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
