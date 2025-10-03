@@ -1,6 +1,8 @@
 # Personal Website of Kelsey Breseman
 Hosted at [ifoundthemeaningoflife.com](//ifoundthemeaningoflife.com) via Netlify. Automatically deploys on push to main.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/81967cab-01a8-40ad-9b6c-e952e3fd3281/deploy-status)](https://app.netlify.com/projects/ifoundthemeaningoflife/deploys)
+
 ## 🚀 Quick start
 
 1.  **Create a Gatsby site.**
