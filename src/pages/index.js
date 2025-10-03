@@ -1,4 +1,5 @@
 import * as React from "react"
+import { StaticImage } from "gatsby-plugin-image";
 
 const pageStyles = {
   color: "#232129",
@@ -24,8 +25,7 @@ const listStyles = {
 const listItemStyles = {
   fontWeight: 300,
   fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
+  maxWidth: 560
 }
 
 const linkStyle = {
@@ -108,6 +108,7 @@ const IndexPage = () => {
           </li>
         ))}
       </ul>
+      <StaticImage src="../images/icon.png"alt="Tlingit design of a honeybee by Kelsey Breseman" style={{ width: 320}} />
     </main>
   )
 }
