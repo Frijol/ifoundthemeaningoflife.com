@@ -1,20 +1,24 @@
-// src/pages/pelican.js
-
 import React from "react";
+
+const pageStyles = {
+  color: "#232129",
+  padding: 96,
+  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+}
+const headingStyles = {
+  marginTop: 0,
+  marginBottom: 64,
+}
+const paragraphStyles = {
+  marginBottom: 48,
+}
 
 export default function Pelican() {
     return (
-        <main style={{
-            fontFamily: "sans-serif",
-            maxWidth: 800,
-            margin: "0 auto",
-            padding: "2em"
-        }}>
-            <h1>Pelican, Alaska: A Visitor&apos;s Guide</h1>
-            <p>
-                <strong>
-                    Please read the whole thing carefully! Most of this information is here to answer questions we have been asked many times.
-                </strong>
+        <main style={pageStyles}>
+            <h1 style={headingStyles}>Pelican, Alaska: A Visitor&apos;s Guide</h1>
+            <p style={paragraphStyles}>
+                Please read the whole thing carefully! Most of this information is here to answer questions we have been asked many times.
             </p>
 
             <h2>Getting there</h2>
