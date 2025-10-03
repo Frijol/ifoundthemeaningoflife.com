@@ -1,11 +1,5 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# Personal Website of Kelsey Breseman
+Hosted at [ifoundthemeaningoflife.com](//ifoundthemeaningoflife.com) via Netlify. Automatically deploys on push to main.
 
 ## 🚀 Quick start
 
