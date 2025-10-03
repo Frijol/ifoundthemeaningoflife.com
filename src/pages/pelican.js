@@ -22,9 +22,12 @@ export default function Pelican() {
                 width="100%"
                 height="350"
                 frameBorder="0"
-                src="https://www.google.com/maps/embed/v1/view?zoom=5&center=57.9608%2C-136.2275&key=AIzaSyD0UHHHqj_pAmYG9Z3sEuOHiN91tdRcsXs"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1678376.099950399!2d-136.2275!3d57.9608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTfCsDU3JzM4LjgiTiAxMzbCsDEzJzM4LjkiVw!5e0!3m2!1sen!2sus!4v1696350000000!5m2!1sen!2sus"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 title="Map to Pelican"
-            ></iframe>
+            />
 
             <h3>Flying to Juneau</h3>
             <p>
@@ -66,9 +69,12 @@ export default function Pelican() {
                 width="100%"
                 height="350"
                 frameBorder="0"
-                src="https://www.google.com/maps/embed/v1/view?zoom=14&center=57.9608%2C-136.2275&key=AIzaSyD0UHHHqj_pAmYG9Z3sEuOHiN91tdRcsXs"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16783.760999504!2d-136.2275!3d57.9608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTfCsDU3JzM4LjgiTiAxMzbCsDEzJzM4LjkiVw!5e0!3m2!1sen!2sus!4v1696350000001!5m2!1sen!2sus"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 title="Pelican Map"
-            ></iframe>
+            />
             <p>It&apos;s a little boardwalk town; you can see all of it without trying hard.</p>
             <p>Salient landmarks:</p>
             <ul>
@@ -94,9 +100,12 @@ export default function Pelican() {
                 width="100%"
                 height="350"
                 frameBorder="0"
-                src="https://www.google.com/maps/embed/v1/search?q=Sunnyside%2C%20Alaska&key=AIzaSyD0UHHHqj_pAmYG9Z3sEuOHiN91tdRcsXs"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16783.760999504!2d-136.2275!3d57.9608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zU3VubnlzaWRlLCBBbGFza2E!5e0!3m2!1sen!2sus!4v1696350000002!5m2!1sen!2sus"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 title="Sunnyside Map"
-            ></iframe>
+            />
             <p>
                 Our place is out at Sunnyside, a beach to the north of Pelican. It consists of a small cluster of cabins we&apos;ve built, all of which the bears have broken into at one time or another (but not while we&apos;re there). All cabins are always works in progress, but pretty comfy. The upshot is, there are plenty of places to sleep. We have some bedding but you might want to bring a sleeping bag/mattress/pillow, depending on how many people are coming.
             </p>
