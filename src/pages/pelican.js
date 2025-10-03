@@ -1,0 +1,180 @@
+// src/pages/pelican.js
+
+import React from "react";
+
+export default function Pelican() {
+    return (
+        <main style={{
+            fontFamily: "sans-serif",
+            maxWidth: 800,
+            margin: "0 auto",
+            padding: "2em"
+        }}>
+            <h1>Pelican, Alaska: A Visitor&apos;s Guide</h1>
+            <p>
+                <strong>
+                    Please read the whole thing carefully! Most of this information is here to answer questions we have been asked many times.
+                </strong>
+            </p>
+
+            <h2>Getting there</h2>
+            <iframe
+                width="100%"
+                height="350"
+                frameBorder="0"
+                src="https://www.google.com/maps/embed/v1/view?zoom=5&center=57.9608%2C-136.2275&key=AIzaSyD0UHHHqj_pAmYG9Z3sEuOHiN91tdRcsXs"
+                title="Map to Pelican"
+            ></iframe>
+
+            <h3>Flying to Juneau</h3>
+            <p>
+                Flights to Juneau are typically on the order of $300 round trip for the SEA-JNU leg. Flights will all route through Seattle to Juneau.
+            </p>
+            <p>
+                <strong>Useful information about Juneau:</strong>
+            </p>
+            <ul>
+                <li>
+                    Juneau is great fun but very challenging logistically. Your best options for getting around are phoning a taxi or taking the bus (you&apos;ll need exact change). Uber exists but doesn&apos;t work great; even the taxi, you might have to call a couple of times. From the airport, downtown is a long way south and the ferry terminal is a long way north—technically you could walk it, but even I wouldn&apos;t recommend it (there are sidewalks and bike paths, though).
+                </li>
+                <li>
+                    Lodging is expensive, sparse, and generally not great. There are some good Airbnb options, and sometimes the hosts are up for helping with transportation. You can absolutely sleep on the floor at the ferry terminal. I&apos;ve also been told that locals wild camp up on the mountains (no permit needed) but I haven&apos;t tried it personally (though if I did, I&apos;d consider Mt. Juneau&apos;s ridgeline). Do ask us what we&apos;re planning to do— we might have a relative offering floor space or rides, or there could be an extra room where wherever we&apos;re staying.
+                </li>
+                <li>
+                    If you do get a bit of time in Juneau, downtown is delightful (especially after the cruise ships leave for the day): hike the Flume Trail, Mt Roberts, or Mt Juneau; get fish tacos at Deckhand Dave&apos;s, huckleberry ice cream at the Alaskan Fudge Co., best-ever cocktails at the Amalga gin distillery, and Russian dumplings at Pel Meni. The Alaska Robotics Gallery book/art/comic shop, Sealaska Heritage store, and Kindred Post are all wonderful too. And if you&apos;re around on the right evenings, the open mic, local live music, and drag show scenes are absolutely excellent. The Mendenhall Glacier is another car/bus ride but very cool also.
+                </li>
+            </ul>
+
+            <h3>Juneau</h3>
+            <p>
+                It&apos;s a nice 90-minute trip in a 4-6-seat plane, flying over forested mountains, whale pods, etc., and landing on the water.
+            </p>
+            <p>
+                Be careful, though—the planes can&apos;t fly if the weather is bad. They are regularly delayed due to weather, so no guarantee that you&apos;ll make your flight home if you count on flying out of Pelican to catch an Alaska Airlines flight the same day.
+            </p>
+            <p>
+                There&apos;s no security for seaplanes, so it&apos;s ok to bring liquids/knives/etc. on the flight—just make sure you meet weight limitations.
+            </p>
+
+            <h3>Other options</h3>
+            <p>
+                There is a new fast catamaran service through the <a href="https://highlinerlodge.com/highliner-express-sailings/" target="_blank" rel="noopener noreferrer">Highliner Lodge</a> that we haven&apos;t tried yet, might be more reliable than the seaplane. This is in the $250/person range.
+            </p>
+
+            <h2>Pelican</h2>
+            <iframe
+                width="100%"
+                height="350"
+                frameBorder="0"
+                src="https://www.google.com/maps/embed/v1/view?zoom=14&center=57.9608%2C-136.2275&key=AIzaSyD0UHHHqj_pAmYG9Z3sEuOHiN91tdRcsXs"
+                title="Pelican Map"
+            ></iframe>
+            <p>It&apos;s a little boardwalk town; you can see all of it without trying hard.</p>
+            <p>Salient landmarks:</p>
+            <ul>
+                <li>
+                    The Lisianski Inlet Cafe: if the Cafe is open, Karen and Victo will take good care of you, with fish burgers and generous bowls of borscht. There are also electrical outlets, a real flush toilet, and a little dog named Mooshka.
+                </li>
+                <li>
+                    The dump: if the garbage isn&apos;t burning and there isn&apos;t a bear rooting around, this is the only place you can get a consistent cell signal.
+                </li>
+                <li>
+                    The library: ever-changing hours, but features Wifi and a book exchange.
+                </li>
+                <li>
+                    Hike to the dam: short, steep, cool hike to Pelican&apos;s water supply/wooden dam.
+                </li>
+                <li>
+                    The stream: if you turn right at the top of the dock, there&apos;s a bridge over a stream which is salmon-choked in August/September.
+                </li>
+            </ul>
+
+            <h2>Getting to Sunnyside</h2>
+            <iframe
+                width="100%"
+                height="350"
+                frameBorder="0"
+                src="https://www.google.com/maps/embed/v1/search?q=Sunnyside%2C%20Alaska&key=AIzaSyD0UHHHqj_pAmYG9Z3sEuOHiN91tdRcsXs"
+                title="Sunnyside Map"
+            ></iframe>
+            <p>
+                Our place is out at Sunnyside, a beach to the north of Pelican. It consists of a small cluster of cabins we&apos;ve built, all of which the bears have broken into at one time or another (but not while we&apos;re there). All cabins are always works in progress, but pretty comfy. The upshot is, there are plenty of places to sleep. We have some bedding but you might want to bring a sleeping bag/mattress/pillow, depending on how many people are coming.
+            </p>
+            <p>
+                There are no indoor toilets, but we recently built a beautiful new outhouse!
+            </p>
+            <p>
+                We have an 18&apos; skiff, partially covered and big enough for 6 (comfortably). We&apos;ll usually use that to get back and forth between Sunnyside and Pelican. It takes about 10 minutes. Can depend on the tide– we use a rope outhaul, but Sunnyside has a very long beach, so if the boat goes high &amp; dry we&apos;re stuck, and if the tide is low, you don&apos;t want to carry anything heavy.
+            </p>
+            <p>
+                We have a canoe. It&apos;s about 30 minutes&apos; hard paddle to town in good weather.
+            </p>
+            <p>
+                There is also a hike which can be completed at low tide from our cabin to the Pelican dump. It&apos;s steep and not well marked, but only an hour or so if you stay on track.
+            </p>
+
+            <h2>Sunnyside</h2>
+            <p>We have:</p>
+            <ul>
+                <li>Lots of indoor places to sleep. There are several cabins! Lupine cabin, Otter cabin, and the boathouse loft sleep 1-2; the main cabin (name disputed) has a bedroom and a loft that can sleep 3-4 additional. Each cabin has gas lights and stove.</li>
+                <li>Full kitchen including gas-powered range &amp; oven, cookware, dishware in the main cabin + some more creative outdoor cooking equipment for fire-based cooking (come with ideas)</li>
+                <li>Woodstoves &amp; firewood</li>
+                <li>Outhouse, new and beautiful as of summer 2016!</li>
+                <li>Running cold water as of summer 2018! It&apos;s a home-made hydraulic ram system pumping cold water from the spring. Works if not in a drought, otherwise we have to haul buckets from the stream.</li>
+                <li>Lots of rocky beachfront</li>
+                <li>Some fishing equipment</li>
+                <li>An 18&apos; skiff (motor boat)</li>
+                <li>A canoe (ask about its history)</li>
+                <li>Life vests</li>
+            </ul>
+            <p>We do not have:</p>
+            <ul>
+                <li>Electricity</li>
+                <li>Refrigeration</li>
+                <li>Cell coverage</li>
+                <li>Indoor toilet</li>
+            </ul>
+            <h3>About bears:</h3>
+            <p>
+                There are grizzly bears here! You will probably see one, but you don&apos;t need to live in fear. We don&apos;t know anybody who has been charged by a bear. We&apos;ll give you an overview of how to not attract or surprise bears when you get here. Mostly: don&apos;t leave food-smelling things out where bears will become interested in them; sing when you&apos;re hiking alone.
+            </p>
+
+            <h2>Packing list essentials</h2>
+            <ul>
+                <li>
+                    <strong>Xtratuf boots</strong>: 15&quot; height (we have some extra sizes around, ask well ahead of time). You need these in order to get in and out of boats every day (we don&apos;t have a dock). They&apos;re not optional, you&apos;ll also hike in them, and little calf-length ones aren&apos;t enough. <a href="https://amzn.to/2MshmTQ" target="_blank" rel="noopener noreferrer">These are the best ones</a>. You can also buy them a short walk from the Juneau airport at Alaska Industrial Hardware.
+                </li>
+                <li>
+                    Complete waterPROOF <strong>raincoat and rainpants</strong>. The rainpants are even more important than the coat, and you might wear them every day. Water resistant is not good enough.
+                </li>
+                <li>
+                    <strong>Sleeping bag + mattress pad</strong> (for indoor use)– ask first! We do have some mattresses/bedding, so you might not have to bring it.
+                </li>
+                <li>
+                    Clothes that dry quickly (it rains a lot and you might get wet adventuring), lots of <strong>layers</strong>, and many <strong>wool socks</strong> (option to do laundry in the stream and hang clothes on a clothesline. There is also a laundromat in town).
+                </li>
+                <li>
+                    <strong>Cash</strong>– Pelican is mostly a cash economy. Things are expensive (if you can get them at all), because everything comes in on the boat or the seaplane. There is an ATM in town, but it doesn&apos;t always have money. There is now a grocery store (yay!) and they even take credit cards, but you will not like what it costs.
+                </li>
+                <li>
+                    <strong>Fishing license</strong>: if you plan to go fishing, you should get one <a href="https://www.adfg.alaska.gov/Store/Home/Guest" target="_blank" rel="noopener noreferrer">here</a> and print it (Sign in &gt; &quot;Sport Fishing, Hunting, Trapping Licenses &amp; Stamps&quot; &gt; Short-term &gt; Sport Fish License &gt; probably no King Salmon Stamp (or at least, I don&apos;t know how to catch them)). Put it in a ziploc bag to keep dry. You can take out the canoe whenever to go fishing.
+                </li>
+                <li>
+                    <strong>A swimsuit and towel</strong>. The towel is handy for daily cleanliness (there&apos;s a cold shower now!). The swimsuit, you might not use, but you will want this in case we go to the hot springs.
+                </li>
+                <li>
+                    <strong>Food</strong>: figure out some meals you would like to cook for everyone, and make sure to bring the ingredients and recipes in your luggage! We have a lot of staples already, so check what&apos;s needed. Fresh vegetables/fruits are always welcome, especially if you&apos;re coming up after us. We will generally have a list of items needing resupply– check before you come. Note that there is no refrigeration (plan on using perishables in the first few days). We try to update <a href="https://docs.google.com/spreadsheets/d/1tZh5bGRcI2JUHGcVUolVcaucimvkeH8pDPcnUHdpTR4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">our pantry inventory</a> at the end of each trip, so that should give a good idea of what&apos;s already there.
+                </li>
+                <li>
+                    <strong>Bug spray</strong> and your preferred method of dealing with inevitable bites. The mosquitos and no-see-ums can be nasty.
+                </li>
+                <li>
+                    Small solar panel and/or external battery for charging devices. There is no electricity at our cabin.
+                </li>
+                <li>
+                    <strong>Activities</strong>: there&apos;s lots of daylight, good company, and many rainy days. Enjoy the disconnected life—don&apos;t forget your book, musical instrument, deck of cards, juggling balls, writing project, woodcarving plans, best stories to tell :). You will have the most fun if you come with a project in mind.
+                </li>
+            </ul>
+        </main>
+    );
+}
