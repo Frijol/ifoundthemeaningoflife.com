@@ -1,5 +1,4 @@
 import * as React from "react"
-import { StaticImage } from "gatsby-plugin-image";
 
 const pageStyles = {
   color: "#232129",
@@ -9,7 +8,7 @@ const pageStyles = {
 const headingStyles = {
   marginTop: 0,
   marginBottom: 64,
-  maxWidth: 320,
+  maxWidth: 480,
 }
 const headingAccentStyles = {
   color: "#663399",
@@ -72,7 +71,7 @@ const links = [
     url: "https://ifoundtheme.substack.com/",
     badge: false,
     description:
-      "Honest, raw personal essays on the nitty-gritty. From rugged adventures, to reflections on modern Indigenous identity, to the joys and perils of motherhood as a foreigner.",
+      "Honest, raw personal essays. From rugged adventures, to reflections on modern Indigenous identity, to the joys and perils of motherhood.",
     color: "#1099A8",
   },
 ]
@@ -83,7 +82,7 @@ const IndexPage = () => {
       <h1 style={headingStyles}>
         Kelsey Breseman
         <br />
-        <span style={headingAccentStyles}>Artist, writer, engineer, and adventurer.</span>
+        <span style={headingAccentStyles}>Artist, writer, engineer, adventurer.</span>
       </h1>
       <p style={paragraphStyles}>
         <i>Living well includes breathing deeply, being outside, and going to sleep tired at the end of the day.</i>
@@ -108,7 +107,9 @@ const IndexPage = () => {
           </li>
         ))}
       </ul>
-      <StaticImage src="../images/icon.png"alt="Tlingit design of a honeybee by Kelsey Breseman" style={{ width: 320}} />
+      <p>
+        <iframe src="https://ifoundtheme.substack.com/embed" title="Substack Embed" width="100%" height="320" style={{border: "1px solid #EEE", background:"white"}} frameborder="0" scrolling="no"></iframe>
+      </p>
     </main>
   )
 }
