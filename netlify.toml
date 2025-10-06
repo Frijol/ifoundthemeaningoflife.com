@@ -1,14 +1,14 @@
 [[redirects]]
   from = "/adventures"
-  to = "/https://ifoundtheme.substack.com"
+  to = "https://ifoundtheme.substack.com"
   status = 302
 
 [[redirects]]
   from = "/blog"
-  to = "/https://ifoundtheme.substack.com"
+  to = "https://ifoundtheme.substack.com"
   status = 302
 
 [[redirects]]
-  from = "/blog"
+  from = "/oom"
   to = "https://frijol.gitbooks.io/orienteering-software-tutorials/content/"
   status = 302
