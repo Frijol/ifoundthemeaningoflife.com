@@ -71,7 +71,7 @@ const links = [
     url: "https://ifoundtheme.substack.com/",
     badge: false,
     description:
-      "Honest, raw personal essays. From rugged adventures, to reflections on modern Indigenous identity, to the joys and perils of motherhood.",
+      "Honest, raw personal essays ranging from rugged adventures, to reflections on modern Indigenous identity, to the joys and perils of motherhood.",
     color: "#1099A8",
   },
 ]
@@ -80,13 +80,10 @@ const IndexPage = () => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
-        Kelsey Breseman
+        Kelsey Breseman<br/><i>(Tlingít/Alaska Indigenous)</i>
         <br />
-        <span style={headingAccentStyles}>Artist, writer, engineer, adventurer.</span>
+        <span style={headingAccentStyles}><br/>is an artist, writer, and engineer who spends as much time as possible outside.</span>
       </h1>
-      <p style={paragraphStyles}>
-        <i>Living well includes breathing deeply, being outside, and going to sleep tired at the end of the day.</i>
-      </p>
       <ul style={listStyles}>
         {links.map(link => (
           <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
@@ -110,6 +107,9 @@ const IndexPage = () => {
       <p>
         <iframe src="https://ifoundtheme.substack.com/embed" title="Substack Embed" width="100%" height="320" style={{border: "1px solid #EEE", background:"white"}} frameborder="0" scrolling="no"></iframe>
       </p>
+      {/* <h1>
+        London, UK | Snohomish, WA | Sunnyside, AK
+      </h1> */}
     </main>
   )
 }
