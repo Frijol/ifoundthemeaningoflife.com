@@ -14,13 +14,13 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "gatsby": "^5.15.0",
-    "gatsby-plugin-image": "^3.15.0",
-    "gatsby-plugin-manifest": "^5.15.0",
-    "gatsby-plugin-sharp": "^5.15.0",
-    "gatsby-source-filesystem": "^5.15.0",
-    "gatsby-transformer-sharp": "^5.15.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "gatsby": "^5.16.1",
+    "gatsby-plugin-image": "^3.16.0",
+    "gatsby-plugin-manifest": "^5.16.0",
+    "gatsby-plugin-sharp": "^5.16.0",
+    "gatsby-source-filesystem": "^5.16.0",
+    "gatsby-transformer-sharp": "^5.16.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   }
 }
