@@ -1,4 +1,5 @@
 import * as React from "react"
+import headshot from "../images/headshot.jpg"
 
 const pageStyles = {
   color: "#232129",
@@ -12,6 +13,14 @@ const headingStyles = {
 }
 const headingAccentStyles = {
   color: "#663399",
+}
+const headshotStyles = {
+  width: 220,
+  height: 220,
+  objectFit: "cover",
+  borderRadius: "50%",
+  border: "4px solid #663399",
+  marginBottom: 32,
 }
 
 const listStyles = {
@@ -76,6 +85,7 @@ const links = [
 const IndexPage = () => {
   return (
     <main style={pageStyles}>
+      <img src={headshot} alt="Kelsey Breseman headshot" style={headshotStyles} />
       <h1 style={headingStyles}>
         Kelsey Breseman<br/><i>(Tlingít/Alaska Indigenous)</i>
         <br />
