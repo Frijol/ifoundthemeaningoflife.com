@@ -30,7 +30,8 @@ const listStyles = {
 const listItemStyles = {
   fontWeight: 300,
   fontSize: 24,
-  maxWidth: 560
+  maxWidth: 560,
+  marginTop: 28,
 }
 
 const linkStyle = {
@@ -43,15 +44,15 @@ const linkStyle = {
 const descriptionStyle = {
   color: "#232129",
   fontSize: 14,
-  marginTop: 10,
+  marginTop: 4,
   marginBottom: 0,
   lineHeight: 1.25,
 }
 
 const badgeStyle = {
   color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
+  backgroundColor: "#042f2e",
+  border: "1px solid #042f2e",
   fontSize: 11,
   fontWeight: "bold",
   letterSpacing: 1,
@@ -80,6 +81,14 @@ const links = [
       "Honest, raw personal essays ranging from rugged adventures, to reflections on modern Indigenous identity, to the joys and perils of motherhood.",
     color: "#1099A8",
   },
+  {
+    text: "Textured Living",
+    url: "https://textured-living.com/",
+    badge: true,
+    description:
+      "A husband-wife project-sharing collaboration exploring projects with natural materials and active family life.",
+    color: "#1099A8",
+  },
 ]
 
 const IndexPage = () => {
@@ -102,8 +111,8 @@ const IndexPage = () => {
                 {link.text}
               </a>
               {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
+                <span style={badgeStyle} aria-label="Coming soon badge">
+                  COMING SOON!
                 </span>
               )}
               <p style={descriptionStyle}>{link.description}</p>
