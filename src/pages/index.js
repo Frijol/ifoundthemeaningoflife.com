@@ -73,7 +73,7 @@ const links = [
     color: "#BC027F",
   },
   {
-    text: "Blog: Thinking in Public",
+    text: "Blog",
     url: "https://ifoundtheme.substack.com/",
     badge: false,
     description:
