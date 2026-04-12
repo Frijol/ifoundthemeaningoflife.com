@@ -12,14 +12,14 @@ const headingStyles = {
   maxWidth: 480,
 }
 const headingAccentStyles = {
-  color: "#663399",
+  color: "#042f2e",
 }
 const headshotStyles = {
   width: 220,
   height: 220,
   objectFit: "cover",
   borderRadius: "50%",
-  border: "4px solid #663399",
+  border: "4px solid #042f2e",
   marginBottom: 32,
 }
 
@@ -34,7 +34,7 @@ const listItemStyles = {
 }
 
 const linkStyle = {
-  color: "#8954A8",
+  color: "#042f2e",
   fontWeight: "bold",
   fontSize: 16,
   verticalAlign: "5%",
