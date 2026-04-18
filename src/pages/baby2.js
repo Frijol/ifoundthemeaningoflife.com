@@ -31,11 +31,14 @@ const linkStyles = {
   color: "#8B4513",
   textDecoration: "none",
   fontWeight: "bold",
-  fontSize: "1.2rem",
-  padding: "0.5rem 1rem",
+  fontSize: "1.3rem",
+  padding: "1rem 2rem",
   border: "1px solid #8B4513",
   borderRadius: 6,
   backgroundColor: "#fff7e6",
+  display: "inline-block",
+  minHeight: "44px",
+  boxSizing: "border-box",
 }
 
 const Baby2Page = () => {
