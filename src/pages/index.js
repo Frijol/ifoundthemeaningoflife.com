@@ -1,6 +1,6 @@
 import * as React from "react"
 import headshot from "../images/headshot.jpg"
-import choppingWoodImage from "../images/gallery/shop/chopping wood.webp"
+import choppingWoodImage from "../images/gallery/shop/chopping wood.png"
 import backscratchBearImage from "../images/gallery/art/backscratch bear.png"
 import kelpForestImage from "../images/gallery/art/kelp forest.jpg"
 
@@ -86,10 +86,10 @@ const badgeStyle = {
 
 const galleryItems = [
   {
-    type: "art",
-    title: "Kelp Forest",
-    image: kelpForestImage,
-    url: "https://ifoundtheme.my.canva.site/",
+    type: "shop",
+    title: "Chopping Wood",
+    image: choppingWoodImage,
+    url: "https://www.etsy.com/listing/4496534643/chopping-wood-classic-matte-paper-poster?ref=shop_home_active_5&logging_key=74510ef5578beb4b399f5b5b38d35e374ca36036%3A4496534643",
   },
   {
     type: "blog",
@@ -99,10 +99,10 @@ const galleryItems = [
     url: "https://ifoundtheme.substack.com/p/a-tlingit-woman-comes-home",
   },
   {
-    type: "shop",
-    title: "Chopping Wood",
-    image: choppingWoodImage,
-    url: "https://www.etsy.com/listing/4496534643/chopping-wood-classic-matte-paper-poster?ref=shop_home_active_5&logging_key=74510ef5578beb4b399f5b5b38d35e374ca36036%3A4496534643",
+    type: "art",
+    title: "Backscratch Bear",
+    image: backscratchBearImage,
+    url: "https://ifoundtheme.my.canva.site/",
   },
   {
     type: "blog",
@@ -113,8 +113,8 @@ const galleryItems = [
   },
   {
     type: "art",
-    title: "Backscratch Bear",
-    image: backscratchBearImage,
+    title: "Kelp Forest",
+    image: kelpForestImage,
     url: "https://ifoundtheme.my.canva.site/",
   },
 ]
@@ -175,19 +175,19 @@ const IndexPage = () => {
         }
 
         .gallery-card {
-          background: #ffffff;
-          border-radius: 0;
+          // background: #ffffff;
+          // border-radius: 0;
           overflow: hidden;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-          transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+          // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+          // transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
           margin-bottom: 24px;
           max-width: 860px;
-          border: 1px solid #f0f0f0;
+          // border: 1px solid #f0f0f0;
         }
 
-        .gallery-card:hover {
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-        }
+        // .gallery-card:hover {
+        //   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        // }
 
         .gallery-card:active {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -200,12 +200,12 @@ const IndexPage = () => {
         }
 
         .gallery-hero {
-          min-height: 240px;
+          height: 350px;
           display: grid;
           place-items: center;
-          padding: 32px;
           text-align: left;
           background: #E8E1D9;
+          overflow: hidden;
         }
 
         .gallery-quote {
@@ -232,7 +232,7 @@ const IndexPage = () => {
 
         .gallery-image {
           width: 100%;
-          height: 260px;
+          height: 350px;
           object-fit: cover;
           display: block;
         }
@@ -279,7 +279,6 @@ const IndexPage = () => {
           border-radius: 50%;
           border: none;
           background: rgba(255, 255, 255, 0.4);
-          cursor: pointer;4, 47, 46, 0.3);
           cursor: pointer;
           transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
           padding: 0;
@@ -306,7 +305,7 @@ const IndexPage = () => {
           border-radius: 0;
           transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
           width: 32px;
-          height: 32.7;
+          height: 32px;
         }
 
         .gallery-arrow:hover {
@@ -349,9 +348,10 @@ const IndexPage = () => {
           .page-links a:hover {
             border-bottom: 1px solid currentColor;
           }
+        }
             
-          @media (max-width: 640px) {
-            .bio-card {
+        @media (max-width: 640px) {
+          .bio-card {
               flex-direction: column;
               align-items: flex-start;
               gap: 20px;
@@ -372,12 +372,11 @@ const IndexPage = () => {
             }
 
             .gallery-image {
-              height: 200px;
+              height: 100%;
             }
 
             .gallery-hero {
-              min-height: 200px;
-              padding: 24px;
+              height: 280px;
             }
 
             .page-links {
@@ -402,19 +401,18 @@ const IndexPage = () => {
                     <p className="gallery-quote">“{activeItem.quote}”</p>
                   </div>
                 ) : activeItem.image ? (
-                  <img
-                    className="gallery-image"
-                    src={activeItem.image}
-                    alt={activeItem.title}
-                  />
+                  <div className="gallery-hero">
+                    <img
+                      className="gallery-image"
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                    />
+                  </div>
                 ) : (
                   <div className="gallery-hero">
                     <p className="gallery-quote">Add image to gallery</p>
                   </div>
                 )}
-                <div className="gallery-body">
-                  <h3 className="gallery-title">"{activeItem.title}"</h3>
-                </div>
               </a>
               <div className="gallery-controls">
                 <button
