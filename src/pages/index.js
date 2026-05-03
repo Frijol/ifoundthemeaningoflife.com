@@ -7,7 +7,7 @@ import kelpForestImage from "../images/gallery/art/kelp forest.jpg"
 const pageStyles = {
   color: "#232129",
   backgroundColor: "#FAFAF8",
-  padding: 96,
+  padding: "clamp(24px, 6vw, 96px)",
   fontFamily: '"Inter", -apple-system, Roboto, sans-serif',
 }
 const headingStyles = {
@@ -17,6 +17,7 @@ const headingStyles = {
   fontFamily: '"Cormorant Garamond", serif',
   lineHeight: 1.2,
   fontWeight: 500,
+  fontSize: "clamp(1.5rem, 4vw, 1.8rem)",
 }
 
 const headshotStyles = {
@@ -53,7 +54,7 @@ const linkStyle = {
   color: "#042F2E",
   fontFamily: '"Cormorant Garamond", serif',
   fontWeight: 500,
-  fontSize: 28,
+  fontSize: "clamp(20px, 4vw, 28px)",
   textDecoration: "none",
   lineHeight: 1.3,
 }
@@ -348,7 +349,48 @@ const IndexPage = () => {
           .page-links a:hover {
             border-bottom: 1px solid currentColor;
           }
+            
+          @media (max-width: 640px) {
+            .bio-card {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 20px;
+            }
+              
+            .bio-card img {
+              width: 120px;
+              height: 120px;
+            }
+
+            .gallery-quote {
+              font-size: 1.2rem;
+              padding: 20px;
+            }
+
+            .gallery-quote::before {
+              font-size: 3.5rem;
+            }
+
+            .gallery-image {
+              height: 200px;
+            }
+
+            .gallery-hero {
+              min-height: 200px;
+              padding: 24px;
+            }
+
+            .page-links {
+              max-width: 100%;
+            }
+
+            .page-links li {
+              margin-top: 24px;
+              padding-bottom: 16px;
+            }
+          }
         }
+          
       `}</style>
       <div>
         <aside className="page-gallery">
@@ -404,7 +446,7 @@ const IndexPage = () => {
           </div>
         </aside>
 
-        <div style={bioCardStyles}>
+        <div className="bio-card" style={bioCardStyles}>
           <img
             src={headshot}
             alt="Kelsey Breseman headshot"
