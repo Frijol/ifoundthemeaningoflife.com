@@ -2,7 +2,7 @@ import * as React from "react"
 import headshot from "../images/headshot.jpg"
 import choppingWoodImage from "../images/gallery/shop/chopping wood.png"
 import backscratchBearImage from "../images/gallery/art/backscratch bear.png"
-import kelpForestImage from "../images/gallery/art/kelp forest.jpg"
+import kelpForestImage from "../images/gallery/art/kelp forest.jpeg"
 
 const pageStyles = {
   color: "#232129",
