@@ -2,20 +2,23 @@ import * as React from "react"
 import headshot from "../images/headshot.jpg"
 import choppingWoodImage from "../images/gallery/shop/chopping wood.webp"
 import backscratchBearImage from "../images/gallery/art/backscratch bear.png"
+import kelpForestImage from "../images/gallery/art/kelp forest.jpg"
 
 const pageStyles = {
   color: "#232129",
+  backgroundColor: "#FAFAF8",
   padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  fontFamily: '"Inter", -apple-system, Roboto, sans-serif',
 }
 const headingStyles = {
   marginTop: 0,
   marginBottom: 64,
   maxWidth: 480,
+  fontFamily: '"Cormorant Garamond", serif',
+  lineHeight: 1.2,
+  fontWeight: 500,
 }
-const headingAccentStyles = {
-  color: "#042f2e",
-}
+
 const headshotStyles = {
   width: 180,
   height: 180,
@@ -25,30 +28,43 @@ const headshotStyles = {
   marginBottom: 32,
 }
 
+const bioCardStyles = {
+  display: "flex",
+  alignItems: "center",
+  gap: 32,
+  marginBottom: 64,
+  maxWidth: 720,
+}
+
 const listStyles = {
   marginBottom: 96,
   paddingLeft: 0,
+  listStyle: "none",
+  maxWidth: 640,
 }
+
 const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginTop: 28,
+  marginTop: 32,
+  paddingBottom: 24,
+  borderBottom: "1px solid rgba(4,47,46,0.12)",
 }
 
 const linkStyle = {
-  color: "#042f2e",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
+  color: "#042F2E",
+  fontFamily: '"Cormorant Garamond", serif',
+  fontWeight: 500,
+  fontSize: 28,
+  textDecoration: "none",
+  lineHeight: 1.3,
 }
 
 const descriptionStyle = {
   color: "#232129",
-  fontSize: 14,
-  marginTop: 4,
-  marginBottom: 0,
-  lineHeight: 1.25,
+  fontSize: 15,
+  marginTop: 8,
+  lineHeight: 1.6,
+  opacity: 0.8,
+  maxWidth: 520,
 }
 
 const badgeStyle = {
@@ -69,10 +85,16 @@ const badgeStyle = {
 
 const galleryItems = [
   {
+    type: "art",
+    title: "Kelp Forest",
+    image: kelpForestImage,
+    url: "https://ifoundtheme.my.canva.site/",
+  },
+  {
     type: "blog",
     title: "A Tlingit Woman Comes Home",
     quote:
-      "When you swim here, kelp ribbons slide soft around your ankles. Barnacles are rough against bare feet, then sea-round stones smooth against your back...",
+      "A bear tooth, I am discovering, is like an iceberg. The part you see is only the tip. The rest of it bulges out in a pinkish ellipse, a taproot of a tooth...",
     url: "https://ifoundtheme.substack.com/p/a-tlingit-woman-comes-home",
   },
   {
@@ -80,6 +102,13 @@ const galleryItems = [
     title: "Chopping Wood",
     image: choppingWoodImage,
     url: "https://www.etsy.com/listing/4496534643/chopping-wood-classic-matte-paper-poster?ref=shop_home_active_5&logging_key=74510ef5578beb4b399f5b5b38d35e374ca36036%3A4496534643",
+  },
+  {
+    type: "blog",
+    title: "A Better First Trimester",
+    quote:
+      "[The Mother] is the mythic creature seen through my one-year-old’s eyes, and whatever dissociated miracle in my body knows how to grow a life. [She] is whatever makes the little one’s sleeping body follow mine across the mattress, cuddling unconsciously to my nearest part...",
+    url: "https://ifoundtheme.substack.com/p/a-better-first-trimester ",
   },
   {
     type: "art",
@@ -122,7 +151,7 @@ const IndexPage = () => {
   React.useEffect(() => {
     const timer = window.setInterval(() => {
       setCurrentSlide(previous => (previous + 1) % slideCount)
-    }, 6000)
+    }, 9000)
 
     return () => window.clearInterval(timer)
   }, [slideCount])
@@ -145,19 +174,22 @@ const IndexPage = () => {
         }
 
         .gallery-card {
-          border: 1px solid #e7e7e7;
-          border-radius: 18px;
-          overflow: hidden;
-          box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
           background: #ffffff;
-          transition: transform 180ms ease, box-shadow 180ms ease;
+          border-radius: 0;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+          transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
           margin-bottom: 24px;
           max-width: 860px;
+          border: 1px solid #f0f0f0;
         }
 
         .gallery-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 26px 70px rgba(0, 0, 0, 0.11);
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+
+        .gallery-card:active {
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
         .gallery-link {
@@ -167,21 +199,34 @@ const IndexPage = () => {
         }
 
         .gallery-hero {
-          min-height: 220px;
+          min-height: 240px;
           display: grid;
           place-items: center;
           padding: 32px;
           text-align: left;
+          background: #E8E1D9;
         }
 
         .gallery-quote {
-          border-left: 5px solid #042f2e;
-          color: #042f2e;
-          font-size: 1.05rem;
+          background: #E8E1D9;
+          color: #232129;
+          font-family: "Cormorant Garamond", serif;
           font-style: italic;
-          line-height: 1.35;
+          font-size: 1.6rem;
+          line-height: 1.7;
+          padding: 28px 32px;
           margin: 0;
-          padding-left: 18px;
+          font-weight: 400;
+        }
+
+        .gallery-quote::before {
+          content: "“";
+          font-size: 6rem;
+          line-height: 0;
+          display: block;
+          margin-left: -0.5em;
+          margin-bottom: 10px;
+          opacity: 0.3;
         }
 
         .gallery-image {
@@ -192,52 +237,58 @@ const IndexPage = () => {
         }
 
         .gallery-body {
-          padding: 24px;
+          padding: 10px 14px 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          min-height: 20px;
         }
 
         .gallery-title {
-          margin: 0 0 10px;
-          font-size: 1.2rem;
-          font-weight: 600;
-          color: #042f2e;
-        }
-
-        .gallery-meta {
           margin: 0;
-          color: #5e5e5e;
           font-size: 0.95rem;
-          line-height: 1.5;
+          font-weight: 400;
+          color: #666666;
+          letter-spacing: 0;
+          font-style: italic;
+          text-align: right;
+          flex: 1;
         }
 
         .gallery-controls {
           display: flex;
           justify-content: center;
           align-items: center;
-          gap: 12px;
-          margin-top: 10px;
-          flex-wrap: wrap;
+          gap: 8px;
+          padding: 0;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
 
         .gallery-dots {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
         }
 
         .gallery-dot {
-          width: 10px;
-          height: 10px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
-          border: 1px solid #042f2e;
-          background: transparent;
-          opacity: 0.45;
+          border: none;
+          background: rgba(255, 255, 255, 0.4);
+          cursor: pointer;4, 47, 46, 0.3);
           cursor: pointer;
-          transition: opacity 120ms ease, transform 120ms ease;
+          transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+          padding: 0;
+        }
+
+        .gallery-dot:hover {
+          background: rgba(4, 47, 46, 0.5);
         }
 
         .gallery-dot.active {
-          opacity: 1;
-          transform: scale(1.15);
           background: #042f2e;
         }
 
@@ -246,19 +297,56 @@ const IndexPage = () => {
           border: none;
           color: #042f2e;
           cursor: pointer;
-          padding: 8px;
+          padding: 4px;
           font-size: 20px;
-          opacity: 0.65;
-          transition: opacity 120ms ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0;
+          transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+          width: 32px;
+          height: 32.7;
         }
 
         .gallery-arrow:hover {
           opacity: 1;
         }
 
+        .gallery-arrow:active {
+          opacity: 0.9;
+        }
+
         @media (max-width: 560px) {
           main {
             padding: 48px 24px;
+          }
+
+          .gallery-arrow {
+            width: 28px;
+            height: 28px;
+            font-size: 18px;
+            padding: 3px;
+          }
+
+          .gallery-controls {
+            gap: 6px;
+          }
+
+          .gallery-dots {
+            gap: 6px;
+          }
+
+          .gallery-dot {
+            width: 6px;
+            height: 6px;
+          }
+          .page-links a {
+            border-bottom: 1px solid transparent;
+            transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .page-links a:hover {
+            border-bottom: 1px solid currentColor;
           }
         }
       `}</style>
@@ -266,7 +354,7 @@ const IndexPage = () => {
         <aside className="page-gallery">
           <div className="gallery-slider">
             <article className="gallery-card">
-              <a className="gallery-link" href={activeItem.url}>
+              <a className="gallery-link" href={activeItem.url} target="_blank" rel="noopener noreferrer">
                 {activeItem.type === "blog" ? (
                   <div className="gallery-hero">
                     <p className="gallery-quote">“{activeItem.quote}”</p>
@@ -283,51 +371,53 @@ const IndexPage = () => {
                   </div>
                 )}
                 <div className="gallery-body">
-                  <h3 className="gallery-title">{activeItem.title}</h3>
+                  <h3 className="gallery-title">"{activeItem.title}"</h3>
                 </div>
               </a>
-            </article>
-            <div className="gallery-controls">
-              <button
-                className="gallery-arrow"
-                aria-label="Previous slide"
-                onClick={() => goToSlide(currentSlide - 1)}
-              >
-                ‹
-              </button>
-              <div className="gallery-dots">
-                {galleryItems.map((item, index) => (
-                  <button
-                    key={item.url}
-                    className={`gallery-dot ${index === currentSlide ? "active" : ""}`}
-                    aria-label={`Go to slide ${index + 1}`}
-                    onClick={() => goToSlide(index)}
-                  />
-                ))}
+              <div className="gallery-controls">
+                <button
+                  className="gallery-arrow"
+                  aria-label="Previous slide"
+                  onClick={() => goToSlide(currentSlide - 1)}
+                >
+                  ‹
+                </button>
+                <div className="gallery-dots">
+                  {galleryItems.map((item, index) => (
+                    <button
+                      key={item.url}
+                      className={`gallery-dot ${index === currentSlide ? "active" : ""}`}
+                      aria-label={`Go to slide ${index + 1}`}
+                      onClick={() => goToSlide(index)}
+                    />
+                  ))}
+                </div>
+                <button
+                  className="gallery-arrow"
+                  aria-label="Next slide"
+                  onClick={() => goToSlide(currentSlide + 1)}
+                >
+                  ›
+                </button>
               </div>
-              <button
-                className="gallery-arrow"
-                aria-label="Next slide"
-                onClick={() => goToSlide(currentSlide + 1)}
-              >
-                ›
-              </button>
-            </div>
+            </article>
           </div>
         </aside>
 
-        <div>
+        <div style={bioCardStyles}>
+          <img
+            src={headshot}
+            alt="Kelsey Breseman headshot"
+            style={headshotStyles}
+          />
+
           <h1 style={headingStyles}>
-            Kelsey Breseman<br />
-            <i>(Tlingít/Alaska Indigenous)</i>
-            <br />
-            <span style={headingAccentStyles}>
-              <br />is an artist, writer, and engineer who spends as much time as possible outside.
+            <span style={{ color: "#042F2E" }}>
+              <b>Kelsey Breseman <i>(Tlingít/Alaska Indigenous)</i></b> is an artist,
+              writer, and engineer who spends as much time as possible outside.
             </span>
           </h1>
         </div>
-
-        <img src={headshot} alt="Kelsey Breseman headshot" style={headshotStyles} />
 
         <ul className="page-links" style={listStyles}>
           {links.map(link => (
