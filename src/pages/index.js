@@ -108,7 +108,7 @@ const galleryItems = [
     type: "blog",
     title: "A Better First Trimester",
     quote:
-      "[The Mother] is the mythic creature seen through my one-year-old’s eyes, and whatever dissociated miracle in my body knows how to grow a life. [She] is whatever makes the little one’s sleeping body follow mine across the mattress, cuddling unconsciously to my nearest part...",
+      "[The Mother] is the mythic creature seen through my one-year-old’s eyes, and whatever dissociated miracle in my body knows how to grow a life. [She] is whatever makes the little one’s sleeping body follow mine...",
     url: "https://ifoundtheme.substack.com/p/a-better-first-trimester ",
   },
   {
