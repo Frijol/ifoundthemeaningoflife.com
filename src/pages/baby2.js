@@ -41,11 +41,24 @@ const formatDay = value =>
 const Baby2Page = () => {
   const [now, setNow] = React.useState(() => new Date())
   const [hoveredBar, setHoveredBar] = React.useState(null)
+  const [isMobile, setIsMobile] = React.useState(false)
   const chartFrameRef = React.useRef(null)
 
   React.useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60000)
     return () => window.clearInterval(timer)
+  }, [])
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return undefined
+
+    const mediaQuery = window.matchMedia("(max-width: 768px)")
+    const updateViewport = () => setIsMobile(mediaQuery.matches)
+
+    updateViewport()
+    mediaQuery.addEventListener?.("change", updateViewport)
+
+    return () => mediaQuery.removeEventListener?.("change", updateViewport)
   }, [])
 
   const dueDate = React.useMemo(() => {
@@ -92,12 +105,32 @@ const Baby2Page = () => {
 
   const maxProbability = Math.max(...bayesData.map(item => item.percent), 1)
   const mostLikely = bayesData.reduce((best, item) => (item.percent > best.percent ? item : best), bayesData[0])
+  const mostLikelyIndex = mostLikely ? bayesData.findIndex(item => item.day.toDateString() === mostLikely.day.toDateString()) : -1
 
   const yAxisTickStep = 1
   const yAxisMaxTick = Math.max(1, Math.ceil(maxProbability))
   const yAxisTicks = Array.from({ length: yAxisMaxTick + 1 }, (_, index) => index)
 
   const barWidth = 900 / Math.max(bayesData.length, 1)
+
+  React.useEffect(() => {
+    if (!isMobile || !chartFrameRef.current || mostLikelyIndex < 0) return undefined
+
+    const frame = chartFrameRef.current
+    const targetBarLeft = 70 + mostLikelyIndex * barWidth
+    const targetBarCenter = targetBarLeft + Math.max(barWidth * 0.72, 3) / 2
+    const viewportWidth = frame.clientWidth
+    const desiredScroll = Math.max(0, targetBarCenter - viewportWidth / 2)
+
+    const applyScroll = () => {
+      frame.scrollLeft = Math.min(desiredScroll, frame.scrollWidth - frame.clientWidth)
+    }
+
+    applyScroll()
+    const timeoutId = window.setTimeout(applyScroll, 100)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [isMobile, mostLikelyIndex, barWidth])
 
   const showTooltip = (event, item) => {
     if (!item) {
@@ -196,15 +229,16 @@ const Baby2Page = () => {
             background: "linear-gradient(180deg, #fff 0%, #f7fbff 100%)",
             border: "1px solid #e6edf5",
             borderRadius: 24,
-            padding: 18,
+            padding: isMobile ? 12 : 18,
+            overflowX: "auto",
           }}
         >
           {hoveredBar ? (
             <div
               style={{
                 position: "absolute",
-                left: 72,
-                top: 125,
+                left: isMobile ? 12 : 72,
+                top: isMobile ? 16 : 125,
                 zIndex: 20,
                 background: "rgba(17, 34, 51, 0.95)",
                 color: "#fff",
@@ -214,8 +248,8 @@ const Baby2Page = () => {
                 lineHeight: 1.4,
                 boxShadow: "0 12px 28px rgba(17, 34, 51, 0.18)",
                 pointerEvents: "none",
-                maxWidth: 260,
-                whiteSpace: "nowrap",
+                maxWidth: isMobile ? 240 : 260,
+                whiteSpace: isMobile ? "normal" : "nowrap",
               }}
             >
               {hoveredBar.text}
@@ -229,14 +263,15 @@ const Baby2Page = () => {
             <div style={{ fontSize: "0.92rem", color: "#44546b" }}>Model: normal due-date distribution, σ ≈ 8.5 days</div>
           </div>
 
-          <svg
-            viewBox="0 0 940 340"
-            width="100%"
-            height="auto"
-            aria-label="Bayesian birth-date probability chart"
-            role="img"
-            style={{ display: "block", overflow: "visible" }}
-          >
+          <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+            <svg
+              viewBox="0 0 940 340"
+              width={isMobile ? 940 : "100%"}
+              height="auto"
+              aria-label="Bayesian birth-date probability chart"
+              role="img"
+              style={{ display: "block", maxWidth: "100%", minWidth: isMobile ? 900 : 0, overflow: "visible" }}
+            >
             <rect x="0" y="0" width="940" height="340" rx="18" fill="#fff" />
             <line x1="58" y1="285" x2="900" y2="285" stroke="#d7dfe9" strokeWidth="1" />
             {bayesData.map((item, index) => {
@@ -328,12 +363,14 @@ const Baby2Page = () => {
               </text>
             ))}
             <text x="52" y="18" fontSize="11" fill="#5f6b7a" textAnchor="start">Posterior probability (%)</text>
-          </svg>
+            </svg>
+          </div>
 
           <div style={{ marginTop: 14, borderTop: "1px solid #e6edf5", paddingTop: 12 }}>
             <div style={{ ...smallLabelStyles, marginBottom: 8 }}>Confidence interval ranges</div>
             <i>"We can be __% confident the baby will be born between:"<br/><br/></i>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.94rem", color: "#334155" }}>
+            <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: isMobile ? "0.88rem" : "0.94rem", color: "#334155", minWidth: isMobile ? 320 : 0 }}>
               <thead>
                 <tr style={{ textAlign: "left", color: "#5f6b7a" }}>
                   <th style={{ padding: "6px 8px 8px 0", fontWeight: 700 }}>Interval</th>
@@ -353,6 +390,7 @@ const Baby2Page = () => {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
 
