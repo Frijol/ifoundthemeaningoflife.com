@@ -44,6 +44,7 @@ const Baby2Page = () => {
   const [isMobile, setIsMobile] = React.useState(false)
   const [selectedConfidence, setSelectedConfidence] = React.useState(60)
   const chartFrameRef = React.useRef(null)
+  const plotScrollRef = React.useRef(null)
 
   React.useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60000)
@@ -145,20 +146,21 @@ const Baby2Page = () => {
   const selectedInterval = computeConfidenceBand(selectedConfidence)
 
   React.useEffect(() => {
-    if (!isMobile || !chartFrameRef.current || mostLikelyIndex < 0) return undefined
+    if (!isMobile || !plotScrollRef.current || mostLikelyIndex < 0) return undefined
 
-    const frame = chartFrameRef.current
+    const frame = plotScrollRef.current
     const targetBarLeft = 70 + mostLikelyIndex * barWidth
     const targetBarCenter = targetBarLeft + Math.max(barWidth * 0.72, 3) / 2
     const viewportWidth = frame.clientWidth
-    const desiredScroll = Math.max(0, targetBarCenter - viewportWidth / 2)
+    const maxScrollLeft = Math.max(0, frame.scrollWidth - viewportWidth)
+    const desiredScroll = Math.min(Math.max(0, targetBarCenter - viewportWidth / 2), maxScrollLeft)
 
     const applyScroll = () => {
-      frame.scrollLeft = Math.min(desiredScroll, frame.scrollWidth - frame.clientWidth)
+      frame.scrollLeft = desiredScroll
     }
 
     applyScroll()
-    const timeoutId = window.setTimeout(applyScroll, 100)
+    const timeoutId = window.setTimeout(applyScroll, 150)
 
     return () => window.clearTimeout(timeoutId)
   }, [isMobile, mostLikelyIndex, barWidth])
@@ -234,7 +236,10 @@ const Baby2Page = () => {
           When will Kelsey give birth, given the baby has not been born yet?
         </h1>
         <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
-          This page uses Bayesian birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible from today onward.
+          This page uses Bayesian birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible.
+        </p>
+        <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
+          We can use this probability distribution to predict our confidence that the baby will be born between specific dates.
         </p>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 24 }}>
@@ -294,7 +299,7 @@ const Baby2Page = () => {
             <div style={{ fontSize: "0.92rem", color: "#44546b" }}>Model: normal due-date distribution, σ ≈ 8.5 days</div>
           </div>
 
-          <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+          <div ref={plotScrollRef} style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
             <svg
               viewBox="0 0 940 340"
               width={isMobile ? 940 : "100%"}
