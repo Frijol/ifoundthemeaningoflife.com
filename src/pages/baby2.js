@@ -42,6 +42,7 @@ const Baby2Page = () => {
   const [now, setNow] = React.useState(() => new Date())
   const [hoveredBar, setHoveredBar] = React.useState(null)
   const [isMobile, setIsMobile] = React.useState(false)
+  const [selectedConfidence, setSelectedConfidence] = React.useState(60)
   const chartFrameRef = React.useRef(null)
 
   React.useEffect(() => {
@@ -112,6 +113,36 @@ const Baby2Page = () => {
   const yAxisTicks = Array.from({ length: yAxisMaxTick + 1 }, (_, index) => index)
 
   const barWidth = 900 / Math.max(bayesData.length, 1)
+
+  const computeConfidenceBand = target => {
+    const rankedByDistance = [...bayesData].sort((a, b) => Math.abs(a.delta) - Math.abs(b.delta))
+    let cumulative = 0
+    const included = []
+
+    for (const item of rankedByDistance) {
+      cumulative += item.percent
+      included.push(item)
+      if (cumulative >= target) break
+    }
+
+    const ordered = [...included].sort((a, b) => a.day - b.day)
+    const left = ordered[0]
+    const right = ordered[ordered.length - 1]
+    const startIndex = left ? bayesData.findIndex(item => item.day.toDateString() === left.day.toDateString()) : -1
+    const endIndex = right ? bayesData.findIndex(item => item.day.toDateString() === right.day.toDateString()) : -1
+
+    return {
+      label: `${target}%`,
+      startDate: left?.day,
+      endDate: right?.day,
+      startX: startIndex >= 0 ? 70 + startIndex * barWidth : 70,
+      endX: endIndex >= 0 ? 70 + endIndex * barWidth + Math.max(barWidth * 0.72, 3) : 70,
+      startIndex,
+      endIndex,
+    }
+  }
+
+  const selectedInterval = computeConfidenceBand(selectedConfidence)
 
   React.useEffect(() => {
     if (!isMobile || !chartFrameRef.current || mostLikelyIndex < 0) return undefined
@@ -318,6 +349,37 @@ const Baby2Page = () => {
                 strokeWidth="2"
               />
             ) : null}
+            {selectedInterval.startIndex >= 0 && selectedInterval.endIndex >= 0 ? (
+              <g style={{ pointerEvents: "none" }}>
+                <rect
+                  x={selectedInterval.startX}
+                  y="40"
+                  width={Math.max(selectedInterval.endX - selectedInterval.startX, 1)}
+                  height="245"
+                  fill="rgba(37, 99, 235, 0.12)"
+                  rx="6"
+                />
+                <line
+                  x1={selectedInterval.startX}
+                  y1="38"
+                  x2={selectedInterval.startX}
+                  y2="285"
+                  stroke="#2563eb"
+                  strokeDasharray="4 4"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={selectedInterval.endX}
+                  y1="38"
+                  x2={selectedInterval.endX}
+                  y2="285"
+                  stroke="#2563eb"
+                  strokeDasharray="4 4"
+                  strokeWidth="2"
+                />
+                <text x={selectedInterval.startX + 6} y="18" fontSize="11" fill="#1d4ed8" fontWeight="700">Selected confidence: {selectedConfidence}%</text>
+              </g>
+            ) : null}
             {probabilityThresholds.map((band, index) => (
               <g key={band.label} style={{ pointerEvents: "none" }}>
                 <rect
@@ -367,6 +429,8 @@ const Baby2Page = () => {
           </div>
 
           <div style={{ marginTop: 14, borderTop: "1px solid #e6edf5", paddingTop: 12 }}>
+            
+
             <div style={{ ...smallLabelStyles, marginBottom: 8 }}>Confidence interval ranges</div>
             <i>"We can be __% confident the baby will be born between:"<br/><br/></i>
             <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
@@ -390,6 +454,27 @@ const Baby2Page = () => {
                 ))}
               </tbody>
             </table>
+            </div>
+            <div style={{ ...smallLabelStyles, marginTop: 18, marginBottom: 8 }}>Choose confidence level:</div>
+            <div style={{ display: "grid", gap: 10, marginBottom: 10 }}>
+              <label htmlFor="confidence-slider" style={{ color: "#334155", fontWeight: 600, fontSize: "0.95rem" }}>
+                With confidence: <strong>{selectedConfidence}%</strong>
+              </label>
+              <input
+                id="confidence-slider"
+                type="range"
+                min="10"
+                max="99"
+                step="1"
+                value={selectedConfidence}
+                onChange={event => setSelectedConfidence(Number(event.target.value))}
+                style={{ width: "100%", accentColor: "#2563eb" }}
+              />
+              <div style={{ color: "#334155", fontSize: "0.95rem", lineHeight: 1.45 }}>
+                {selectedInterval.startDate && selectedInterval.endDate
+                  ? `We predict a birth date between: ${formatDay(selectedInterval.startDate)} – ${formatDay(selectedInterval.endDate)}`
+                  : "No range is available yet."}
+              </div>
             </div>
           </div>
         </div>
