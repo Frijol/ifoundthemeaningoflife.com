@@ -59,7 +59,7 @@ const Baby2Page = () => {
 
     const due = new Date(dueDate)
     const end = new Date(due)
-    end.setDate(end.getDate() + 18)
+    end.setDate(end.getDate() + 14)
 
     const sigma = 8.5
     const horizonDays = Math.max(1, Math.ceil((end.getTime() - start.getTime()) / 86400000) + 1)
@@ -110,7 +110,7 @@ const Baby2Page = () => {
     })
   }
 
-  const probabilityThresholds = [90, 95, 97].map(target => {
+  const probabilityThresholds = [50, 60, 75, 90].map(target => {
     const rankedByDistance = [...bayesData].sort((a, b) => Math.abs(a.delta) - Math.abs(b.delta))
     let cumulative = 0
     const included = []
@@ -127,22 +127,50 @@ const Baby2Page = () => {
 
     return {
       label: `${target}%`,
+      startDate: left?.day,
+      endDate: right?.day,
       startX: 70 + bayesData.findIndex(item => item.day.toDateString() === left.day.toDateString()) * barWidth,
       endX: 70 + bayesData.findIndex(item => item.day.toDateString() === right.day.toDateString()) * barWidth + Math.max(barWidth * 0.72, 3),
-      color: target === 90 ? "rgba(15, 118, 110, 0.12)" : target === 95 ? "rgba(56, 189, 248, 0.12)" : "rgba(251, 191, 36, 0.12)",
+      color:
+        target === 50
+          ? "rgba(226, 232, 240, 0.18)"
+          : target === 60
+          ? "rgba(191, 219, 254, 0.18)"
+          : target === 70
+          ? "rgba(147, 197, 253, 0.18)"
+          : target === 80
+          ? "rgba(148, 163, 184, 0.12)"
+          : target === 90
+          ? "rgba(15, 118, 110, 0.12)"
+          : target === 95
+          ? "rgba(56, 189, 248, 0.12)"
+          : "rgba(251, 191, 36, 0.12)",
     }
   })
   const dueIndex = bayesData.findIndex(item => item.day.toDateString() === dueDate.toDateString())
+
+  const bandStrokeColor = index =>
+    index === 0
+      ? "#cbd5e1"
+      : index === 1
+      ? "#bfdbfe"
+      : index === 2
+      ? "#93c5fd"
+      : index === 3
+      ? "#94a3b8"
+      : index === 4
+      ? "#0f766e"
+      : "#38bdf8"
 
   return (
     <main style={pageStyles}>
       <section style={cardStyles}>
         <p style={smallLabelStyles}>Bayesian birth-date estimate</p>
         <h1 style={{ margin: "8px 0 12px", fontSize: "clamp(2rem, 6vw, 3rem)", lineHeight: 1.1, color: "#112233" }}>
-          What is the most likely birth date, given the baby has not been born yet?
+          When will Kelsey give birth, given the baby has not been born yet?
         </h1>
         <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
-          This page uses the same Bayesian idea Allen Downey uses in birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible from today onward. The baby has not been born yet, so dates in the past are excluded.
+          This page uses Bayesian birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible from today onward.
         </p>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 24 }}>
@@ -175,8 +203,8 @@ const Baby2Page = () => {
             <div
               style={{
                 position: "absolute",
-                left: 16,
-                top: 16,
+                left: 72,
+                top: 125,
                 zIndex: 20,
                 background: "rgba(17, 34, 51, 0.95)",
                 color: "#fff",
@@ -271,7 +299,7 @@ const Baby2Page = () => {
                   y1="38"
                   x2={band.startX}
                   y2="285"
-                  stroke={index === 0 ? "#0f766e" : index === 1 ? "#38bdf8" : "#f59e0b"}
+                  stroke={bandStrokeColor(index)}
                   strokeDasharray="4 4"
                   strokeWidth="2"
                 />
@@ -280,7 +308,7 @@ const Baby2Page = () => {
                   y1="38"
                   x2={band.endX}
                   y2="285"
-                  stroke={index === 0 ? "#0f766e" : index === 1 ? "#38bdf8" : "#f59e0b"}
+                  stroke={bandStrokeColor(index)}
                   strokeDasharray="4 4"
                   strokeWidth="2"
                 />
@@ -302,8 +330,29 @@ const Baby2Page = () => {
             <text x="52" y="18" fontSize="11" fill="#5f6b7a" textAnchor="start">Posterior probability (%)</text>
           </svg>
 
-          <div style={{ marginTop: 12, color: "#44546b", fontSize: "0.95rem" }}>
-            The most probable range is around the due date, but the posterior still spreads out because the actual birthday is uncertain. The chart is intentionally conditional on “baby has not arrived yet”, which is why only remaining dates are shown.
+          <div style={{ marginTop: 14, borderTop: "1px solid #e6edf5", paddingTop: 12 }}>
+            <div style={{ ...smallLabelStyles, marginBottom: 8 }}>Confidence interval ranges</div>
+            <i>"We can be __% confident the baby will be born between:"<br/><br/></i>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.94rem", color: "#334155" }}>
+              <thead>
+                <tr style={{ textAlign: "left", color: "#5f6b7a" }}>
+                  <th style={{ padding: "6px 8px 8px 0", fontWeight: 700 }}>Interval</th>
+                  <th style={{ padding: "6px 8px 8px 0", fontWeight: 700 }}>Date range</th>
+                </tr>
+              </thead>
+              <tbody>
+                {probabilityThresholds.map(band => (
+                  <tr key={band.label}>
+                    <td style={{ padding: "6px 8px 6px 0", fontWeight: 600 }}>{band.label}</td>
+                    <td style={{ padding: "6px 8px 6px 0" }}>
+                      {band.startDate && band.endDate
+                        ? `${formatDay(band.startDate)} – ${formatDay(band.endDate)}`
+                        : "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -323,7 +372,7 @@ const Baby2Page = () => {
           <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
             <div style={smallLabelStyles}>Notes</div>
             <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
-              This is an illustrative estimate rather than a medical prediction; it is meant to show the Bayesian update process, not predict a real delivery date.
+              This is an illustrative estimate rather than a medical prediction.
             </p>
           </article>
         </div>
