@@ -40,6 +40,8 @@ const formatDay = value =>
 
 const Baby2Page = () => {
   const [now, setNow] = React.useState(() => new Date())
+  const [hoveredBar, setHoveredBar] = React.useState(null)
+  const chartFrameRef = React.useRef(null)
 
   React.useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60000)
@@ -57,7 +59,7 @@ const Baby2Page = () => {
 
     const due = new Date(dueDate)
     const end = new Date(due)
-    end.setDate(end.getDate() + 14)
+    end.setDate(end.getDate() + 18)
 
     const sigma = 8.5
     const horizonDays = Math.max(1, Math.ceil((end.getTime() - start.getTime()) / 86400000) + 1)
@@ -91,11 +93,61 @@ const Baby2Page = () => {
   const maxProbability = Math.max(...bayesData.map(item => item.percent), 1)
   const mostLikely = bayesData.reduce((best, item) => (item.percent > best.percent ? item : best), bayesData[0])
 
-  const yAxisTickStep = maxProbability <= 1 ? 0.2 : maxProbability <= 5 ? 0.5 : 1
-  const yAxisMaxTick = Math.ceil(maxProbability / yAxisTickStep) * yAxisTickStep
-  const yAxisTicks = Array.from({ length: Math.floor(yAxisMaxTick / yAxisTickStep) + 1 }, (_, index) => index * yAxisTickStep)
+  const yAxisTickStep = 1
+  const yAxisMaxTick = Math.max(1, Math.ceil(maxProbability))
+  const yAxisTicks = Array.from({ length: yAxisMaxTick + 1 }, (_, index) => index)
 
   const barWidth = 900 / Math.max(bayesData.length, 1)
+
+  const updateTooltip = event => {
+    const bounds = chartFrameRef.current?.getBoundingClientRect()
+
+    if (!bounds) {
+      return
+    }
+
+    const graphX = event.clientX - bounds.left
+
+    if (graphX < 70 || graphX > 900) {
+      setHoveredBar(null)
+      return
+    }
+
+    const index = Math.min(bayesData.length - 1, Math.max(0, Math.floor((graphX - 70) / barWidth)))
+    const item = bayesData[index]
+
+    if (!item) {
+      setHoveredBar(null)
+      return
+    }
+
+    setHoveredBar({
+      text: `${formatDay(item.day)} — ${item.percent.toFixed(1)}% posterior probability`,
+    })
+  }
+
+  const probabilityThresholds = [90, 95, 97].map(target => {
+    const rankedByDistance = [...bayesData].sort((a, b) => Math.abs(a.delta) - Math.abs(b.delta))
+    let cumulative = 0
+    const included = []
+
+    for (const item of rankedByDistance) {
+      cumulative += item.percent
+      included.push(item)
+      if (cumulative >= target) break
+    }
+
+    const ordered = [...included].sort((a, b) => a.day - b.day)
+    const left = ordered[0]
+    const right = ordered[ordered.length - 1]
+
+    return {
+      label: `${target}%`,
+      startX: 70 + bayesData.findIndex(item => item.day.toDateString() === left.day.toDateString()) * barWidth,
+      endX: 70 + bayesData.findIndex(item => item.day.toDateString() === right.day.toDateString()) * barWidth + Math.max(barWidth * 0.72, 3),
+      color: target === 90 ? "rgba(15, 118, 110, 0.12)" : target === 95 ? "rgba(56, 189, 248, 0.12)" : "rgba(251, 191, 36, 0.12)",
+    }
+  })
   const dueIndex = bayesData.findIndex(item => item.day.toDateString() === dueDate.toDateString())
 
   return (
@@ -125,7 +177,38 @@ const Baby2Page = () => {
           </article>
         </div>
 
-        <div style={{ background: "linear-gradient(180deg, #fff 0%, #f7fbff 100%)", border: "1px solid #e6edf5", borderRadius: 24, padding: 18 }}>
+        <div
+          ref={chartFrameRef}
+          style={{
+            position: "relative",
+            background: "linear-gradient(180deg, #fff 0%, #f7fbff 100%)",
+            border: "1px solid #e6edf5",
+            borderRadius: 24,
+            padding: 18,
+          }}
+        >
+          {hoveredBar ? (
+            <div
+              style={{
+                position: "absolute",
+                left: 16,
+                top: 16,
+                zIndex: 20,
+                background: "rgba(17, 34, 51, 0.95)",
+                color: "#fff",
+                borderRadius: 10,
+                padding: "8px 10px",
+                fontSize: "0.9rem",
+                lineHeight: 1.4,
+                boxShadow: "0 12px 28px rgba(17, 34, 51, 0.18)",
+                pointerEvents: "none",
+                maxWidth: 260,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {hoveredBar.text}
+            </div>
+          ) : null}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
             <div>
               <div style={smallLabelStyles}>Posterior probability curve</div>
@@ -134,7 +217,16 @@ const Baby2Page = () => {
             <div style={{ fontSize: "0.92rem", color: "#44546b" }}>Model: normal due-date distribution, σ ≈ 8.5 days</div>
           </div>
 
-          <svg viewBox="0 0 940 340" width="100%" height="auto" aria-label="Bayesian birth-date probability chart" role="img" style={{ display: "block", overflow: "visible" }}>
+          <svg
+            viewBox="0 0 940 340"
+            width="100%"
+            height="auto"
+            aria-label="Bayesian birth-date probability chart"
+            role="img"
+            style={{ display: "block", overflow: "visible" }}
+            onMouseMove={updateTooltip}
+            onMouseLeave={() => setHoveredBar(null)}
+          >
             <rect x="0" y="0" width="940" height="340" rx="18" fill="#fff" />
             <line x1="58" y1="285" x2="900" y2="285" stroke="#d7dfe9" strokeWidth="1" />
             {bayesData.map((item, index) => {
@@ -151,6 +243,7 @@ const Baby2Page = () => {
                     rx="4"
                     fill={index === dueIndex ? "#0f766e" : index % 2 === 0 ? "#3278c6" : "#79a8dd"}
                     opacity={index === dueIndex ? 0.92 : 0.82}
+                    style={{ cursor: "pointer" }}
                   />
                   {index % 4 === 0 ? (
                     <text x={x + 4} y="308" fontSize="10" fill="#4b5d73">{formatDay(item.day)}</text>
@@ -169,6 +262,38 @@ const Baby2Page = () => {
                 strokeWidth="2"
               />
             ) : null}
+            {probabilityThresholds.map((band, index) => (
+              <g key={band.label} style={{ pointerEvents: "none" }}>
+                <rect
+                  x={band.startX}
+                  y="40"
+                  width={Math.max(band.endX - band.startX, 1)}
+                  height="245"
+                  fill={band.color}
+                  rx="6"
+                  style={{ pointerEvents: "none" }}
+                />
+                <line
+                  x1={band.startX}
+                  y1="38"
+                  x2={band.startX}
+                  y2="285"
+                  stroke={index === 0 ? "#0f766e" : index === 1 ? "#38bdf8" : "#f59e0b"}
+                  strokeDasharray="4 4"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={band.endX}
+                  y1="38"
+                  x2={band.endX}
+                  y2="285"
+                  stroke={index === 0 ? "#0f766e" : index === 1 ? "#38bdf8" : "#f59e0b"}
+                  strokeDasharray="4 4"
+                  strokeWidth="2"
+                />
+                <text x={band.startX + 6} y="28" fontSize="10" fill="#334155">{band.label}</text>
+              </g>
+            ))}
             {yAxisTicks.map(tick => (
               <text
                 key={`tick-${tick}`}
@@ -178,7 +303,7 @@ const Baby2Page = () => {
                 fill="#5f6b7a"
                 textAnchor="end"
               >
-                {tick >= 1 ? `${tick.toFixed(0)}%` : `${tick.toFixed(1)}%`}
+                {tick.toFixed(0)}%
               </text>
             ))}
             <text x="52" y="18" fontSize="11" fill="#5f6b7a" textAnchor="start">Posterior probability (%)</text>
