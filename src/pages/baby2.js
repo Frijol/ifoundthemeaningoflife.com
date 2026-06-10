@@ -99,30 +99,14 @@ const Baby2Page = () => {
 
   const barWidth = 900 / Math.max(bayesData.length, 1)
 
-  const updateTooltip = event => {
-    const bounds = chartFrameRef.current?.getBoundingClientRect()
-
-    if (!bounds) {
-      return
-    }
-
-    const graphX = event.clientX - bounds.left
-
-    if (graphX < 70 || graphX > 900) {
-      setHoveredBar(null)
-      return
-    }
-
-    const index = Math.min(bayesData.length - 1, Math.max(0, Math.floor((graphX - 70) / barWidth)))
-    const item = bayesData[index]
-
+  const showTooltip = (event, item) => {
     if (!item) {
       setHoveredBar(null)
       return
     }
 
     setHoveredBar({
-      text: `${formatDay(item.day)} — ${item.percent.toFixed(1)}% posterior probability`,
+      text: `${formatDay(item.day)} — ${item.percent.toFixed(2)}% posterior probability`,
     })
   }
 
@@ -224,8 +208,6 @@ const Baby2Page = () => {
             aria-label="Bayesian birth-date probability chart"
             role="img"
             style={{ display: "block", overflow: "visible" }}
-            onMouseMove={updateTooltip}
-            onMouseLeave={() => setHoveredBar(null)}
           >
             <rect x="0" y="0" width="940" height="340" rx="18" fill="#fff" />
             <line x1="58" y1="285" x2="900" y2="285" stroke="#d7dfe9" strokeWidth="1" />
@@ -244,9 +226,20 @@ const Baby2Page = () => {
                     fill={index === dueIndex ? "#0f766e" : index % 2 === 0 ? "#3278c6" : "#79a8dd"}
                     opacity={index === dueIndex ? 0.92 : 0.82}
                     style={{ cursor: "pointer" }}
+                    onMouseEnter={event => showTooltip(event, item)}
+                    onMouseMove={event => showTooltip(event, item)}
+                    onMouseLeave={() => setHoveredBar(null)}
                   />
-                  {index % 4 === 0 ? (
-                    <text x={x + 4} y="308" fontSize="10" fill="#4b5d73">{formatDay(item.day)}</text>
+                  {index % 3 === 0 ? (
+                    <text
+                      x={x + Math.max(barWidth * 0.36, 6)}
+                      y="308"
+                      fontSize="10"
+                      fill="#4b5d73"
+                      textAnchor="middle"
+                    >
+                      {formatDay(item.day)}
+                    </text>
                   ) : null}
                 </g>
               )
