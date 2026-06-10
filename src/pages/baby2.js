@@ -1,93 +1,219 @@
 import * as React from "react"
 
 const pageStyles = {
-  color: "#222222",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-  backgroundColor: "#ffffff",
+  color: "#112233",
+  padding: "clamp(24px, 5vw, 64px)",
+  fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  background: "linear-gradient(135deg, #fffaf5 0%, #f7fbff 45%, #fffaf5 100%)",
   minHeight: "100vh",
-  backgroundImage: 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Cg fill=%22%23f7f2e8%22%20fill-opacity=%220.6%22%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%2212%22/%3E%3Ccircle cx=%22160%22 cy=%22160%22 r=%2212%22/%3E%3Ccircle cx=%22120%22 cy=%2240%22 r=%2212%22/%3E%3Ccircle cx=%2240%22 cy=%22140%22 r=%2212%22/%3E%3C/g%3E%3Cg fill=%22%23c8dabf%22%20fill-opacity=%220.45%22%3E%3Cpath d=%22M10 0 L20 0 L15 10 Z%22/%3E%3Cpath d=%22M180 190 L190 190 L185 200 Z%22/%3E%3Cpath d=%22M70 60 L80 60 L75 70 Z%22/%3E%3E%3C/g%3E%3C/svg%3E")',
-  backgroundRepeat: 'repeat',
 }
 
-const subHeadingStyles = {
-  color: "#555555",
-  fontSize: "1.5rem",
-  textAlign: "center",
-  marginBottom: 32,
+const cardStyles = {
+  maxWidth: 1140,
+  margin: "0 auto",
+  background: "rgba(255,255,255,0.86)",
+  border: "1px solid rgba(17,34,51,0.08)",
+  borderRadius: 24,
+  boxShadow: "0 18px 48px rgba(17,34,51,0.08)",
+  padding: "clamp(20px, 4vw, 36px)",
+  backdropFilter: "blur(10px)",
 }
-const paragraphStyles = {
-  marginBottom: 48,
-  fontSize: "1.2rem",
-  lineHeight: 1.6,
-  textAlign: "center",
+
+const smallLabelStyles = {
+  textTransform: "uppercase",
+  letterSpacing: "0.18em",
+  fontSize: "0.78rem",
+  color: "#5f6b7a",
+  fontWeight: 700,
 }
-const mapStyles = {
-  border: "2px solid #CCCCCC",
-  borderRadius: 8,
-  marginBottom: 48,
+
+const normalPdf = (x, sigma) => {
+  const scale = sigma * Math.sqrt(2 * Math.PI)
+  return Math.exp(-0.5 * (x / sigma) ** 2) / scale
 }
-const linkStyles = {
-  color: "#8B4513",
-  textDecoration: "none",
-  fontWeight: "bold",
-  fontSize: "1.3rem",
-  padding: "1rem 2rem",
-  border: "1px solid #8B4513",
-  borderRadius: 6,
-  backgroundColor: "#fff7e6",
-  display: "inline-block",
-  minHeight: "44px",
-  boxSizing: "border-box",
-}
+
+const formatDay = value =>
+  value.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  })
 
 const Baby2Page = () => {
+  const [now, setNow] = React.useState(() => new Date())
+
+  React.useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 60000)
+    return () => window.clearInterval(timer)
+  }, [])
+
+  const dueDate = React.useMemo(() => {
+    const due = new Date(now.getFullYear(), 6, 14)
+    return due < now ? new Date(now.getFullYear() + 1, 6, 14) : due
+  }, [now])
+
+  const bayesData = React.useMemo(() => {
+    const start = new Date(now)
+    start.setHours(0, 0, 0, 0)
+
+    const due = new Date(dueDate)
+    const end = new Date(due)
+    end.setDate(end.getDate() + 14)
+
+    const sigma = 8.5
+    const horizonDays = Math.max(1, Math.ceil((end.getTime() - start.getTime()) / 86400000) + 1)
+    const candidates = []
+
+    for (let i = 0; i < horizonDays; i += 1) {
+      const day = new Date(start)
+      day.setDate(start.getDate() + i)
+
+      const delta = (day.getTime() - due.getTime()) / 86400000
+      const prior = normalPdf(delta, sigma)
+
+      if (prior > 0) {
+        candidates.push({
+          day,
+          delta,
+          prior,
+        })
+      }
+    }
+
+    const total = candidates.reduce((sum, item) => sum + item.prior, 0)
+
+    return candidates.map(item => ({
+      ...item,
+      probability: item.prior / total,
+      percent: (item.prior / total) * 100,
+    }))
+  }, [now])
+
+  const maxProbability = Math.max(...bayesData.map(item => item.percent), 1)
+  const mostLikely = bayesData.reduce((best, item) => (item.percent > best.percent ? item : best), bayesData[0])
+
+  const yAxisTickStep = maxProbability <= 1 ? 0.2 : maxProbability <= 5 ? 0.5 : 1
+  const yAxisMaxTick = Math.ceil(maxProbability / yAxisTickStep) * yAxisTickStep
+  const yAxisTicks = Array.from({ length: Math.floor(yAxisMaxTick / yAxisTickStep) + 1 }, (_, index) => index * yAxisTickStep)
+
+  const barWidth = 900 / Math.max(bayesData.length, 1)
+  const dueIndex = bayesData.findIndex(item => item.day.toDateString() === dueDate.toDateString())
+
   return (
     <main style={pageStyles}>
-      <h2 style={subHeadingStyles}>"Again, Again!" A Re-use Baby Shower</h2>
-      <p style={paragraphStyles}>
-        Baby number two is due in mid-July! We would love for your family to come and help us celebrate with a morning of games, treats, and community.
-      </p>
-      <h3 style={{ textAlign: "center", color: "#333333", marginBottom: 16 }}>Date & Time</h3>
-      <p style={{ textAlign: "center", fontSize: "1.5rem", marginBottom: 48 }}>May 9, 10 AM - Noon</p>
-      <h3 style={{ textAlign: "center", color: "#333333", marginBottom: 16 }}>Location</h3>
-      <p style={{ textAlign: "center", fontSize: "1.2rem", marginBottom: 16 }}>Olden Community Garden</p>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.36167824101716!2d-0.1045797!3d51.552342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b79f1e4dc95%3A0x539cac9e201503b2!2sOlden%20Community%20Garden!5e0!3m2!1sen!2suk!4v1701028830000!5m2!1sen!2suk"
-          width="600"
-          height="450"
-          style={mapStyles}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Map to Olden Community Garden"
-        ></iframe>
-      </div>
-      <h3 style={{ textAlign: "center", color: "#333333", marginBottom: 16 }}>Venue</h3>
-      <p style={paragraphStyles}>
-        Olden Community Garden is a gated garden with seating and a sheltered area in case of rain. Kids are generally safe to explore but please keep them in sight as there are stairs and they shouldn't pick the flowers! There is a stroller-accessible bathroom with a baby changing area. We've just replanted the lawn this fall, but expect it to be newly open in May, so a picnic blanket might be nice!
-      </p><p style={paragraphStyles}>
-        Finsbury Park station has step-free access for both Tube and National Rail trains.
-      </p>
-      <h3 style={{ textAlign: "center", color: "#333333", marginBottom: 16 }}>Food & Drink</h3>
-      <p style={paragraphStyles}>
-        We'll provide a selection of snacks, fresh fruit, and tea. Feel free to bring a small plate to share if you'd like; please label any items that include common allergens (e.g. nuts).
-      </p>
-      <h3 style={{ textAlign: "center", color: "#333333", marginBottom: 16 }}>Gifts</h3>
-      <p style={paragraphStyles}>
-        Since we've moved a couple of times, we don't have a lot of newborn gear—so we're hoping to source the bits & bobs those of you with little ones are ready to pass on. Don't buy anything! But if you have something from our list you're ready to pass on, we'd love it. Please leave a note so we don't get duplicates. 
-      </p>
-      <p style={paragraphStyles}>
-        No gift? No problem! Alternatively: cut fruit, veggies, cheese, or other favorite snack to be shared by little ones and adults alike would be much appreciated.
-      </p>
-      <div style={{ textAlign: "center" }}>
-        <a href="https://docs.google.com/spreadsheets/d/14uUfNLYmGHgP1fb-9W3OmR43-HLmPRNzu8ZxoevlwGU/edit?gid=0#gid=0" style={linkStyles} target="_blank" rel="noreferrer">View Our Baby Registry</a>
-      </div>
+      <section style={cardStyles}>
+        <p style={smallLabelStyles}>Bayesian birth-date estimate</p>
+        <h1 style={{ margin: "8px 0 12px", fontSize: "clamp(2rem, 6vw, 3rem)", lineHeight: 1.1, color: "#112233" }}>
+          What is the most likely birth date, given the baby has not been born yet?
+        </h1>
+        <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
+          This page uses the same Bayesian idea Allen Downey uses in birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible from today onward. The baby has not been born yet, so dates in the past are excluded.
+        </p>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 24 }}>
+          <article style={{ flex: "1 1 220px", background: "#fff", border: "1px solid #e6edf5", borderRadius: 18, padding: 16 }}>
+            <div style={smallLabelStyles}>As of</div>
+            <div style={{ fontSize: "1.2rem", fontWeight: 700, color: "#112233" }}>{now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</div>
+          </article>
+          <article style={{ flex: "1 1 220px", background: "#fff", border: "1px solid #e6edf5", borderRadius: 18, padding: 16 }}>
+            <div style={smallLabelStyles}>Due date</div>
+            <div style={{ fontSize: "1.2rem", fontWeight: 700, color: "#112233" }}>{dueDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
+          </article>
+          <article style={{ flex: "1 1 260px", background: "#fff", border: "1px solid #e6edf5", borderRadius: 18, padding: 16 }}>
+            <div style={smallLabelStyles}>Most likely day</div>
+            <div style={{ fontSize: "1.2rem", fontWeight: 700, color: "#112233" }}>{mostLikely ? formatDay(mostLikely.day) : "—"}</div>
+            <div style={{ color: "#58708d", fontSize: "0.95rem" }}>{mostLikely ? `${mostLikely.percent.toFixed(1)}% posterior probability` : ""}</div>
+          </article>
+        </div>
+
+        <div style={{ background: "linear-gradient(180deg, #fff 0%, #f7fbff 100%)", border: "1px solid #e6edf5", borderRadius: 24, padding: 18 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
+            <div>
+              <div style={smallLabelStyles}>Posterior probability curve</div>
+              <div style={{ fontSize: "0.96rem", color: "#44546b" }}>The bars are the renormalized probabilities for each remaining birth date after conditioning on “not born yet”.</div>
+            </div>
+            <div style={{ fontSize: "0.92rem", color: "#44546b" }}>Model: normal due-date distribution, σ ≈ 8.5 days</div>
+          </div>
+
+          <svg viewBox="0 0 940 340" width="100%" height="auto" aria-label="Bayesian birth-date probability chart" role="img" style={{ display: "block", overflow: "visible" }}>
+            <rect x="0" y="0" width="940" height="340" rx="18" fill="#fff" />
+            <line x1="58" y1="285" x2="900" y2="285" stroke="#d7dfe9" strokeWidth="1" />
+            {bayesData.map((item, index) => {
+              const height = (item.percent / maxProbability) * 180
+              const x = 70 + index * barWidth
+              const y = 285 - height
+              return (
+                <g key={item.day.toISOString()}>
+                  <rect
+                    x={x}
+                    y={y}
+                    width={Math.max(barWidth * 0.72, 3)}
+                    height={height}
+                    rx="4"
+                    fill={index === dueIndex ? "#0f766e" : index % 2 === 0 ? "#3278c6" : "#79a8dd"}
+                    opacity={index === dueIndex ? 0.92 : 0.82}
+                  />
+                  {index % 4 === 0 ? (
+                    <text x={x + 4} y="308" fontSize="10" fill="#4b5d73">{formatDay(item.day)}</text>
+                  ) : null}
+                </g>
+              )
+            })}
+            {dueIndex >= 0 ? (
+              <line
+                x1={70 + dueIndex * barWidth + barWidth * 0.36}
+                y1="40"
+                x2={70 + dueIndex * barWidth + barWidth * 0.36}
+                y2="285"
+                stroke="#e76f51"
+                strokeDasharray="5 5"
+                strokeWidth="2"
+              />
+            ) : null}
+            {yAxisTicks.map(tick => (
+              <text
+                key={`tick-${tick}`}
+                x="48"
+                y={285 - (tick / yAxisMaxTick) * 180 + 4}
+                fontSize="11"
+                fill="#5f6b7a"
+                textAnchor="end"
+              >
+                {tick >= 1 ? `${tick.toFixed(0)}%` : `${tick.toFixed(1)}%`}
+              </text>
+            ))}
+            <text x="52" y="18" fontSize="11" fill="#5f6b7a" textAnchor="start">Posterior probability (%)</text>
+          </svg>
+
+          <div style={{ marginTop: 12, color: "#44546b", fontSize: "0.95rem" }}>
+            The most probable range is around the due date, but the posterior still spreads out because the actual birthday is uncertain. The chart is intentionally conditional on “baby has not arrived yet”, which is why only remaining dates are shown.
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 18, marginTop: 20 }}>
+          <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
+            <div style={smallLabelStyles}>How to read this</div>
+            <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
+              Each bar is the probability of birth on that day, after updating the due-date estimate with the fact that today has already passed.
+            </p>
+          </article>
+          <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
+            <div style={smallLabelStyles}>Why it is Bayesian</div>
+            <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
+              The model starts with a due-date-centered distribution and then renormalizes the probabilities for the dates that are still possible.
+            </p>
+          </article>
+          <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
+            <div style={smallLabelStyles}>Notes</div>
+            <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
+              This is an illustrative estimate rather than a medical prediction; it is meant to show the Bayesian update process, not predict a real delivery date.
+            </p>
+          </article>
+        </div>
+      </section>
     </main>
   )
 }
 
 export default Baby2Page
 
-export const Head = () => <title>Baby Shower Invitation</title>
+export const Head = () => <title>Bayesian Birth-Date Probabilities</title>
