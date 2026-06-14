@@ -153,7 +153,8 @@ const Baby2Page = () => {
     const targetBarCenter = targetBarLeft + Math.max(barWidth * 0.72, 3) / 2
     const viewportWidth = frame.clientWidth
     const maxScrollLeft = Math.max(0, frame.scrollWidth - viewportWidth)
-    const desiredScroll = Math.min(Math.max(0, targetBarCenter - viewportWidth / 2), maxScrollLeft)
+    const preferredPosition = viewportWidth * 0.9
+    const desiredScroll = Math.min(Math.max(0, targetBarCenter - preferredPosition), maxScrollLeft)
 
     const applyScroll = () => {
       frame.scrollLeft = desiredScroll
@@ -235,13 +236,6 @@ const Baby2Page = () => {
         <h1 style={{ margin: "8px 0 12px", fontSize: "clamp(2rem, 6vw, 3rem)", lineHeight: 1.1, color: "#112233" }}>
           When will Kelsey give birth, given the baby has not been born yet?
         </h1>
-        <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
-          This page uses Bayesian birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible.
-        </p>
-        <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
-          We can use this probability distribution to predict our confidence that the baby will be born between specific dates.
-        </p>
-
         <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 24 }}>
           <article style={{ flex: "1 1 220px", background: "#fff", border: "1px solid #e6edf5", borderRadius: 18, padding: 16 }}>
             <div style={smallLabelStyles}>As of</div>
@@ -257,6 +251,7 @@ const Baby2Page = () => {
             <div style={{ color: "#58708d", fontSize: "0.95rem" }}>{mostLikely ? `${mostLikely.percent.toFixed(1)}% posterior probability` : ""}</div>
           </article>
         </div>
+
 
         <div
           ref={chartFrameRef}
@@ -484,26 +479,12 @@ const Baby2Page = () => {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 18, marginTop: 20 }}>
-          <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
-            <div style={smallLabelStyles}>How to read this</div>
-            <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
-              Each bar is the probability of birth on that day, after updating the due-date estimate with the fact that today has already passed.
-            </p>
-          </article>
-          <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
-            <div style={smallLabelStyles}>Why it is Bayesian</div>
-            <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
-              The model starts with a due-date-centered distribution and then renormalizes the probabilities for the dates that are still possible.
-            </p>
-          </article>
-          <article style={{ border: "1px solid #e6edf5", borderRadius: 18, padding: 16, background: "#fff" }}>
-            <div style={smallLabelStyles}>Notes</div>
-            <p style={{ color: "#334155", lineHeight: 1.55, marginBottom: 0 }}>
-              This is an illustrative estimate rather than a medical prediction.
-            </p>
-          </article>
-        </div>
+        <p style={{ margin: "20px 0 12px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
+          This page uses Bayesian birth-date predictions: treat the due date as a noisy center and then renormalize the probability over the dates that are still possible.
+        </p>
+        <p style={{ margin: "0 0 18px", maxWidth: 820, color: "#334155", fontSize: "1.02rem", lineHeight: 1.6 }}>
+          We can use this probability distribution to predict our confidence that the baby will be born between specific dates.
+        </p>
       </section>
     </main>
   )
